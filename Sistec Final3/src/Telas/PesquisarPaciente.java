@@ -9,10 +9,14 @@ import Dao.PacienteDao;
 import Dao.UsuarioDao;
 import classJava.Paciente;
 import classJava.Usuario;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -56,7 +60,7 @@ public class PesquisarPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Filtra = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Novo2 = new javax.swing.JLabel();
@@ -75,7 +79,13 @@ public class PesquisarPaciente extends javax.swing.JFrame {
 
         jLabel1.setText("Pesquisar");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, 20));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 270, -1));
+
+        Filtra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FiltraKeyTyped(evt);
+            }
+        });
+        getContentPane().add(Filtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 270, -1));
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -285,6 +295,21 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         PrincipalADM prin = new PrincipalADM();
         prin.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseClicked
+TableRowSorter trs ;
+    private void FiltraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FiltraKeyTyped
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        
+        Filtra.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            trs.setRowFilter(RowFilter.regexFilter(Filtra.getText(), 1));
+            }
+});
+        trs=new TableRowSorter(dtm);
+        jTable1.setRowSorter(trs);
+    }//GEN-LAST:event_FiltraKeyTyped
 
     /**
      * @param args the command line arguments
@@ -332,6 +357,7 @@ public class PesquisarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel Editar1;
     private javax.swing.JLabel Editar2;
     private javax.swing.JLabel ExcluirL;
+    private javax.swing.JTextField Filtra;
     private javax.swing.JLabel Novo1;
     private javax.swing.JLabel Novo2;
     private javax.swing.JLabel excluir2;
@@ -342,6 +368,5 @@ public class PesquisarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

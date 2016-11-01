@@ -195,6 +195,11 @@ public class PrincipalADM extends javax.swing.JFrame {
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/examepng.png"))); // NOI18N
         jMenuItem11.setText("Exame Clínico");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem11);
 
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/laboratoriopng.png"))); // NOI18N
@@ -318,6 +323,13 @@ public class PrincipalADM extends javax.swing.JFrame {
         CadastroAnam prin = new CadastroAnam();
         prin.setVisible(true);
     }//GEN-LAST:event_jMenuItemDadosAnamneseActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+                        dispose();
+        PesquisarExameClinico prin = new PesquisarExameClinico();
+        prin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
