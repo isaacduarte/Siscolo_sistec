@@ -6,21 +6,24 @@
 package Telas;
 
 import Dao.PacienteDao;
+import Dao.UsuarioDao;
 import aula11.CPF;
 import classJava.Paciente;
+import classJava.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import formatador.classes.Formatador;
+import javax.xml.bind.DatatypeConverter;
 /**
  *
  * @author Caio
  */
-public class CadastroPaci extends javax.swing.JFrame {
+public class UpPaci extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroPaci
      */
-    public CadastroPaci() {
+    public UpPaci() {
         initComponents();
         cpf=new Formatador(jTextcpf, "###.###.###-##");
         telefone=new Formatador(jTextFieldTelefone, "(##)#####-####");
@@ -96,7 +99,8 @@ public class CadastroPaci extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        cod = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -315,13 +319,57 @@ public class CadastroPaci extends javax.swing.JFrame {
         });
         getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, -1, 70));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundolegal585.jpg"))); // NOI18N
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
+        cod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundolegal585.jpg"))); // NOI18N
+        getContentPane().add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
+
+        jLabel19.setText("jLabel19");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+   public void exporta(Paciente p){
+    PacienteDao dao = new PacienteDao();
+    p=dao.obter(Paciente.class, p.getId());
+    cod.setText(""+p.getId());
+    jTextcartaoSus.setText(p.getCartaoSus());
+    jTextApelido.setText(p.getApelido());
+    jTextnomePaciente.setText(p.getNomePaciente());
+    jTextNacionalidade.setText(p.getNacionalidade());
+    jTextNomeMae.setText(p.getNomeMae());
+    jTextIdade.setText(""+p.getIdade());
+    jTextcpf.setText(p.getCpf());
+    if(p.getRaca().equals("Branca")){
+    jCheckBoxB.setSelected(true);
+    }else if(p.getRaca().equals("Preta")){
+        jCheckBoxPreta.setSelected(true);
+    }else if(p.getRaca().equals("Parda")){
+     jCheckBoxParda.setSelected(true);
+    }else if(p.getRaca().equals("Amarela")){
+     jCheckBoxAmarela.setSelected(true);
+    }
+    jTextFieldDataNasc.setText(p.getDataNacimento());
+    jTextFieldIndigenaEtnia.setText(p.getIndigenaEtinia());
+    if(p.getNivelEscolaridade().equals("Ensino Fundamental Completo")){
+     jCheckBoxEFC.setSelected(true);
+   }else if(p.getNivelEscolaridade().equals("Analfabeto")){
+      jCheckBoxAnalfabeto.setSelected(true);
+}else if(p.getNivelEscolaridade().equals("Ensino Medio Completo")){
+        jCheckBoxEMC.setSelected(true);
+}else if(p.getNivelEscolaridade().equals("Ensino Superior Completo")){
+        jCheckBoxESC.setSelected(true);
+}
+    jTextFieldLogradouro.setText(p.getLogradouro());
+    jTextFieldNumero.setText(""+p.getNumero());
+    jTextFieldComplemento.setText(p.getComplemento());
+    jTextFieldBairro.setText(p.getBairro());
+    jTextFielduf.setText(p.getUF());
+    jTextFieldcodMunicipio.setText(p.getCodigoMunicipio());
+    jTextFieldMunicipio.setText(p.getMunicipio());
+    jTextFieldCep.setText(p.getCep());
+    jTextFieldTelefone.setText(p.getTelefone());
+    jTextFieldPontoReferencia.setText(p.getPontoReferencia());
+   }
     private void jTextNomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeMaeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNomeMaeActionPerformed
@@ -399,6 +447,8 @@ public class CadastroPaci extends javax.swing.JFrame {
          }
          else{
              Paciente p=new Paciente();
+              int i = Integer.parseInt(cod.getText());
+            p.setId(i);
              p.setCartaoSus(jTextcartaoSus.getText());
              p.setApelido(jTextApelido.getText());
              p.setNomePaciente(jTextnomePaciente.getText());
@@ -445,7 +495,7 @@ public class CadastroPaci extends javax.swing.JFrame {
              p=dao.salvar(p);
              JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
             dispose();
-            CadastroPaci Prin = new CadastroPaci();
+            PesquisarPaciente Prin = new PesquisarPaciente();
             Prin.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(rootPane,"CPF inválido!");
@@ -504,6 +554,7 @@ public class CadastroPaci extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Voltar;
+    private javax.swing.JLabel cod;
     private javax.swing.JCheckBox jCheckBoxAmarela;
     private javax.swing.JCheckBox jCheckBoxAnalfabeto;
     private javax.swing.JCheckBox jCheckBoxB;
@@ -522,6 +573,7 @@ public class CadastroPaci extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -530,7 +582,6 @@ public class CadastroPaci extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -56,12 +56,12 @@ public void preenchendoTable(){
         novo2 = new javax.swing.JLabel();
         Editar2 = new javax.swing.JLabel();
         Excluir2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        voltar2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         novo1 = new javax.swing.JLabel();
         Excluir1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        voltar = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,8 +113,13 @@ public void preenchendoTable(){
         });
         getContentPane().add(Excluir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltaricon.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
+        voltar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltaricon.png"))); // NOI18N
+        voltar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltar2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(voltar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/pesquisaodsakda13232.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 40));
@@ -138,8 +143,13 @@ public void preenchendoTable(){
         });
         getContentPane().add(Excluir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 40, 50));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltarpng.png"))); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 40));
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltarpng.png"))); // NOI18N
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/fundolegal.jpg"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
@@ -219,6 +229,20 @@ TableRowSorter trs ;
         jTableUsuario.setRowSorter(trs);
     }//GEN-LAST:event_jTextFieldFlitraKeyTyped
 
+    private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_voltarMouseClicked
+
+    private void voltar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltar2MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_voltar2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -266,9 +290,7 @@ TableRowSorter trs ;
     private javax.swing.JLabel Excluir1;
     private javax.swing.JLabel Excluir2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -276,6 +298,8 @@ TableRowSorter trs ;
     private javax.swing.JTextField jTextFieldFlitra;
     private javax.swing.JLabel novo1;
     private javax.swing.JLabel novo2;
+    private javax.swing.JLabel voltar;
+    private javax.swing.JLabel voltar2;
     // End of variables declaration//GEN-END:variables
     //aaaaaa
 }

@@ -176,7 +176,7 @@ public class UPUsuario1 extends javax.swing.JFrame {
             usu= dao.salvar(usu);
             JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
             dispose();
-            CadastroUsuario1 Prin = new CadastroUsuario1();
+            PesquisarUsuario Prin = new PesquisarUsuario();
             Prin.setVisible(true);
         
         }

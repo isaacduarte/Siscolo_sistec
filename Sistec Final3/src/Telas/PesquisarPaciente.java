@@ -5,7 +5,14 @@
  */
 package Telas;
 
+import Dao.PacienteDao;
+import Dao.UsuarioDao;
+import classJava.Paciente;
+import classJava.Usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,7 +25,26 @@ public class PesquisarPaciente extends javax.swing.JFrame {
      */
     public PesquisarPaciente() {
         initComponents();
+        
+        preechendoTabelaPaciente();
+        
     }
+    public void  preechendoTabelaPaciente(){
+    
+             PacienteDao dao=new PacienteDao();
+            List<Paciente> paciente = dao.pesquisaId();
+          DefaultTableModel dtmPaciente = (DefaultTableModel) jTable1.getModel();
+          if(paciente !=null){
+            for(Paciente p: paciente){
+            Object[] dados={p.getId(), p.getNomePaciente(), p.getApelido(), p.getIdade(), p.getUF(), p.getCep(), p.getMunicipio(), p.getBairro(), p.getNumero(), p.getLogradouro(), p.getTelefone() };
+            dtmPaciente.addRow(dados);
+            
+            }}
+    }
+             
+        
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,14 +59,14 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        Novo2 = new javax.swing.JLabel();
+        Editar2 = new javax.swing.JLabel();
+        ExcluirL = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        Editar1 = new javax.swing.JLabel();
+        Novo1 = new javax.swing.JLabel();
+        excluir2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -51,46 +77,108 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, 20));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 270, -1));
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nome Paciente", "Apelido", "Idade", "UF", "CEP", "Municipio", "Bairro", "Numero", "Logradouro", "Telefone"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true, true, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
+            jTable1.getColumnModel().getColumn(9).setResizable(false);
+            jTable1.getColumnModel().getColumn(10).setResizable(false);
+            jTable1.getColumnModel().getColumn(10).setPreferredWidth(120);
+        }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 560, 214));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 620, 214));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/novo32d.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+        Novo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/novo32d.png"))); // NOI18N
+        Novo2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Novo2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(Novo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/editar34f.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
+        Editar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/editar34f.png"))); // NOI18N
+        Editar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Editar2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(Editar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/excluirpng23.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
+        ExcluirL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/excluirpng23.png"))); // NOI18N
+        ExcluirL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExcluirLMouseClicked(evt);
+            }
+        });
+        getContentPane().add(ExcluirL, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltaricon.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/pesquisaodsakda13232.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 40));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/buttonedit45.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 50, 60));
+        Editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/buttonedit45.png"))); // NOI18N
+        Editar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Editar1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(Editar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 50, 60));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/novopng.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, 40));
+        Novo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/novopng.png"))); // NOI18N
+        Novo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Novo1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(Novo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, 40));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/excluir1png.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 60, 60));
+        excluir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/excluir1png.png"))); // NOI18N
+        excluir2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                excluir2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(excluir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 60, 60));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltarpng.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/fundolegal.jpg"))); // NOI18N
@@ -98,6 +186,105 @@ public class PesquisarPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluir2MouseClicked
+        // TODO add your handling code here:
+        if(jTable1.getSelectedRow() != 1){
+                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTable1.getModel();
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    Paciente p=new Paciente();
+                    PacienteDao dao=new PacienteDao();
+                    System.out.println(id);
+                    dao.remover(Paciente.class, id);
+                      System.out.println(p);
+                    dtmUsuario.removeRow(jTable1.getSelectedRow());
+                  }else{
+                      JOptionPane.showMessageDialog(null,"seleciona uma linha da tabela.");
+                  }
+
+    }//GEN-LAST:event_excluir2MouseClicked
+
+    private void ExcluirLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExcluirLMouseClicked
+        // TODO add your handling code here:
+        
+        if(jTable1.getSelectedRow() != 1){
+                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTable1.getModel();
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    Paciente p=new Paciente();
+                    PacienteDao dao=new PacienteDao();
+                    System.out.println(id);
+                    dao.remover(Paciente.class, id);
+                      System.out.println(p);
+                    dtmUsuario.removeRow(jTable1.getSelectedRow());
+                  }else{
+                      JOptionPane.showMessageDialog(null,"seleciona uma linha da tabela.");
+                  }
+    }//GEN-LAST:event_ExcluirLMouseClicked
+
+    private void Novo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo1MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        CadastroPaci paci = new CadastroPaci();
+        paci.setVisible(true);
+    }//GEN-LAST:event_Novo1MouseClicked
+
+    private void Novo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo2MouseClicked
+        // TODO add your handling code here:
+        
+        dispose();
+        CadastroPaci paci = new CadastroPaci();
+        paci.setVisible(true);
+    }//GEN-LAST:event_Novo2MouseClicked
+
+    private void Editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar1MouseClicked
+        // TODO add your handling code here:
+                if(jTable1.getSelectedRow() != -1){
+             dispose();
+                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    PacienteDao dao = new PacienteDao();
+                    Paciente p= new Paciente();
+                    p.setId(id);
+                    UpPaci prin=new UpPaci();
+                    prin.exporta(p);
+                    prin.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
+        
+        }
+    }//GEN-LAST:event_Editar1MouseClicked
+
+    private void Editar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar2MouseClicked
+        // TODO add your handling code here:
+         if(jTable1.getSelectedRow() != -1){
+             dispose();
+                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    PacienteDao dao = new PacienteDao();
+                    Paciente p= new Paciente();
+                    p.setId(id);
+                    UpPaci prin=new UpPaci();
+                    prin.exporta(p);
+                    prin.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
+        
+        }
+    }//GEN-LAST:event_Editar2MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments
@@ -142,17 +329,17 @@ public class PesquisarPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Editar1;
+    private javax.swing.JLabel Editar2;
+    private javax.swing.JLabel ExcluirL;
+    private javax.swing.JLabel Novo1;
+    private javax.swing.JLabel Novo2;
+    private javax.swing.JLabel excluir2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
