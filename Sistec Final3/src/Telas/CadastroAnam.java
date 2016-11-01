@@ -221,14 +221,29 @@ public class CadastroAnam extends javax.swing.JFrame {
 
         jCheckBoxPASim.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxPASim.setText("Sim");
+        jCheckBoxPASim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPASimActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxPASim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 294, -1, -1));
 
         jCheckBoxPANao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxPANao.setText("Não");
+        jCheckBoxPANao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPANaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxPANao, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 294, -1, -1));
 
         jCheckBoxPANaoS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxPANaoS.setText("Não Sabe");
+        jCheckBoxPANaoS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPANaoSActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxPANaoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 294, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -237,14 +252,29 @@ public class CadastroAnam extends javax.swing.JFrame {
 
         jCheckBoxHRMSim.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxHRMSim.setText("Sim");
+        jCheckBoxHRMSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxHRMSimActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxHRMSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 336, -1, -1));
 
         jCheckBoxHRMNao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxHRMNao.setText("Não");
+        jCheckBoxHRMNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxHRMNaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxHRMNao, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 336, -1, -1));
 
         jCheckBoxHRMNaoS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxHRMNaoS.setText("Não Sabe");
+        jCheckBoxHRMNaoS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxHRMNaoSActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxHRMNaoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 336, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -253,14 +283,29 @@ public class CadastroAnam extends javax.swing.JFrame {
 
         jCheckBoxTRSim.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxTRSim.setText("Sim");
+        jCheckBoxTRSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxTRSimActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxTRSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 378, -1, -1));
 
         jCheckBoxTRNao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxTRNao.setText("Não");
+        jCheckBoxTRNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxTRNaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxTRNao, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 378, -1, -1));
 
         jCheckBoxTRNaoS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxTRNaoS.setText("Não Sabe");
+        jCheckBoxTRNaoS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxTRNaoSActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxTRNaoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 378, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -276,10 +321,20 @@ public class CadastroAnam extends javax.swing.JFrame {
 
         jCheckBoxDUMNaoS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxDUMNaoS.setText("Não Sabe");
+        jCheckBoxDUMNaoS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxDUMNaoSActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxDUMNaoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(529, 62, -1, -1));
 
         jCheckBoxDUMNaoL.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxDUMNaoL.setText("Não Lembra");
+        jCheckBoxDUMNaoL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxDUMNaoLActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxDUMNaoL, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 62, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -288,6 +343,11 @@ public class CadastroAnam extends javax.swing.JFrame {
 
         jCheckBoxSRSSim.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxSRSSim.setText("Sim");
+        jCheckBoxSRSSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSRSSimActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxSRSSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         jCheckBoxSRSNN.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -304,9 +364,19 @@ public class CadastroAnam extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 445, -1, -1));
 
         jCheckBoxSMSim.setText("Sim");
+        jCheckBoxSMSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSMSimActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxSMSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 462, -1, -1));
 
         jCheckBoxSMNNN.setText("Não sabe/Não lembra/Não esta no menopausa");
+        jCheckBoxSMNNN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSMNNNActionPerformed(evt);
+            }
+        });
         getContentPane().add(jCheckBoxSMNNN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, -1, -1));
 
         CAdastra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/cadastrarcamp.png"))); // NOI18N
@@ -367,11 +437,15 @@ public class CadastroAnam extends javax.swing.JFrame {
     private void jCheckBoxFAPNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFAPNaoActionPerformed
         jCheckBoxFAPSimQ.setSelected(false);
         jCheckBoxFAPNaoS.setSelected(false);
+        jTextFieldFAPAno.setVisible(false);
+        jLabelAno.setVisible(false);
     }//GEN-LAST:event_jCheckBoxFAPNaoActionPerformed
 
     private void jCheckBoxFAPNaoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFAPNaoSActionPerformed
         jCheckBoxFAPSimQ.setSelected(false);
         jCheckBoxFAPNao.setSelected(false);
+        jTextFieldFAPAno.setVisible(false);
+                jLabelAno.setVisible(false);
     }//GEN-LAST:event_jCheckBoxFAPNaoSActionPerformed
 
     private void jCheckBoxUDNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUDNaoActionPerformed
@@ -417,13 +491,102 @@ public class CadastroAnam extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Já Fez Tratamento Por Radiografia");
         }else if(!jCheckBoxSRSSim.isSelected() || !jCheckBoxSRSNN.isSelected()){
         JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Tem ou teve algum sangramento após relações sexuais");
+        }else if(!jCheckBoxSMSim.isSelected() || !jCheckBoxSMNNN.isSelected()){
+        JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções Tem ou teve algum sangramento após a menopausa");
+        }else if(jTextFieldDataUMestruacao.equals("") || !jCheckBoxDUMNaoS.isSelected() || !jCheckBoxDUMNaoL.isSelected()){
+         JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Data Da Última Mestruação");
         }
         anaminese ana=new anaminese();
+        
     }//GEN-LAST:event_CAdastraMouseClicked
 
     private void jCheckBoxSRSNNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSRSNNActionPerformed
         // TODO add your handling code here:
+        jCheckBoxSRSSim.setSelected(false);
     }//GEN-LAST:event_jCheckBoxSRSNNActionPerformed
+
+    private void jCheckBoxPASimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPASimActionPerformed
+        // TODO add your handling code here:
+       jCheckBoxPANao.setSelected(false);
+       jCheckBoxPANaoS.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxPASimActionPerformed
+
+    private void jCheckBoxPANaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPANaoActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxPASim.setSelected(false);
+        jCheckBoxPANaoS.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxPANaoActionPerformed
+
+    private void jCheckBoxPANaoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPANaoSActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxPASim.setSelected(false);
+        jCheckBoxPANao.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxPANaoSActionPerformed
+
+    private void jCheckBoxHRMSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHRMSimActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxHRMNao.setSelected(false);
+        jCheckBoxHRMNaoS.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxHRMSimActionPerformed
+
+    private void jCheckBoxHRMNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHRMNaoActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxHRMSim.setSelected(false);
+        jCheckBoxHRMNaoS.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxHRMNaoActionPerformed
+
+    private void jCheckBoxHRMNaoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHRMNaoSActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxHRMNao.setSelected(false);
+        jCheckBoxHRMSim.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxHRMNaoSActionPerformed
+
+    private void jCheckBoxTRSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTRSimActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxTRNao.setSelected(false);
+        jCheckBoxTRNaoS.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxTRSimActionPerformed
+
+    private void jCheckBoxTRNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTRNaoActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxTRSim.setSelected(false);
+        jCheckBoxTRNaoS.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxTRNaoActionPerformed
+
+    private void jCheckBoxTRNaoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTRNaoSActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxTRSim.setSelected(false);
+        jCheckBoxTRNao.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxTRNaoSActionPerformed
+
+    private void jCheckBoxSRSSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSRSSimActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxSRSNN.setSelected(false);
+        
+    }//GEN-LAST:event_jCheckBoxSRSSimActionPerformed
+
+    private void jCheckBoxSMSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSMSimActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxSMNNN.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxSMSimActionPerformed
+
+    private void jCheckBoxSMNNNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSMNNNActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxSMSim.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxSMNNNActionPerformed
+
+    private void jCheckBoxDUMNaoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDUMNaoSActionPerformed
+        // TODO add your handling code here:
+        jCheckBoxDUMNaoL.setSelected(false);
+        jTextFieldDataUMestruacao.setVisible(false);
+        
+    }//GEN-LAST:event_jCheckBoxDUMNaoSActionPerformed
+
+    private void jCheckBoxDUMNaoLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDUMNaoLActionPerformed
+        // TODO add your handling code here:
+        jTextFieldDataUMestruacao.setVisible(false);
+        jCheckBoxDUMNaoS.setSelected(false);
+    }//GEN-LAST:event_jCheckBoxDUMNaoLActionPerformed
 
     /**
      * @param args the command line arguments
