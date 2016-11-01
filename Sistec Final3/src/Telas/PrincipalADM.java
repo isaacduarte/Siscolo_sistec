@@ -43,7 +43,7 @@ public class PrincipalADM extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItemDadosAnamnese = new javax.swing.JMenuItem();
         jMenuItemunidadeSaude = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -140,9 +140,14 @@ public class PrincipalADM extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/anamnesepng.png"))); // NOI18N
-        jMenuItem5.setText("Dados Anamnese");
-        jMenu1.add(jMenuItem5);
+        jMenuItemDadosAnamnese.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/anamnesepng.png"))); // NOI18N
+        jMenuItemDadosAnamnese.setText("Dados Anamnese");
+        jMenuItemDadosAnamnese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDadosAnamneseActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemDadosAnamnese);
 
         jMenuItemunidadeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/download490.png"))); // NOI18N
         jMenuItemunidadeSaude.setText("Unidade de Saúde");
@@ -307,6 +312,13 @@ public class PrincipalADM extends javax.swing.JFrame {
         lab.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItemDadosAnamneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDadosAnamneseActionPerformed
+        // TODO add your handling code here:
+                dispose();
+        CadastroAnam prin = new CadastroAnam();
+        prin.setVisible(true);
+    }//GEN-LAST:event_jMenuItemDadosAnamneseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -373,9 +385,9 @@ public class PrincipalADM extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItemDadosAnamnese;
     private javax.swing.JMenuItem jMenuItemunidadeSaude;
     // End of variables declaration//GEN-END:variables
 

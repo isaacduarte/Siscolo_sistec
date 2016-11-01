@@ -158,6 +158,11 @@ public class CadastroExCli extends javax.swing.JFrame {
         getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 351, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 331, -1, 70));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -266,6 +271,13 @@ public class CadastroExCli extends javax.swing.JFrame {
         jTextFielddataColeta.setText("");
         
     }//GEN-LAST:event_LimparMouseClicked
+
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
+                dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_VoltarMouseClicked
 
     /**
      * @param args the command line arguments

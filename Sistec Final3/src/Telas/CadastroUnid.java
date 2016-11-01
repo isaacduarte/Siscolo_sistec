@@ -120,6 +120,11 @@ public class CadastroUnid extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, 70));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundouni2.jpg"))); // NOI18N
@@ -178,6 +183,13 @@ public class CadastroUnid extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
+                dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_VoltarMouseClicked
 
     /**
      * @param args the command line arguments

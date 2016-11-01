@@ -308,6 +308,11 @@ public class CadastroPaci extends javax.swing.JFrame {
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 443, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, -1, 70));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundolegal585.jpg"))); // NOI18N
@@ -450,6 +455,13 @@ public class CadastroPaci extends javax.swing.JFrame {
          }
         
     }//GEN-LAST:event_jLabel24MouseClicked
+
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_VoltarMouseClicked
 
     /**
      * @param args the command line arguments
