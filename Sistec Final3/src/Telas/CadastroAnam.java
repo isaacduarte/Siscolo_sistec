@@ -9,7 +9,7 @@ import classJava.anaminese;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-
+import Dao.AnamineseDao;
 /**
  *
  * @author CAIO
@@ -391,9 +391,19 @@ public class CadastroAnam extends javax.swing.JFrame {
         getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 492, -1, -1));
 
         Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
+        Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LimparMouseClicked(evt);
+            }
+        });
         getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 492, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, -1, 70));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundoanam.jpg"))); // NOI18N
@@ -475,29 +485,101 @@ public class CadastroAnam extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxEGNaoSActionPerformed
 
     private void CAdastraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CAdastraMouseClicked
-        if(!jCheckBoxMERastreamento.isSelected()|| !jCheckBoxMERepeticao.isSelected() || !jCheckBoxMEseguimento.isSelected()){
+        if(!jCheckBoxMERastreamento.isSelected()&& !jCheckBoxMERepeticao.isSelected() && !jCheckBoxMEseguimento.isSelected()){
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Motivo Do Exame");
-        }else if(!jCheckBoxFAPSimQ.isSelected() || !jCheckBoxFAPNao.isSelected() || !jCheckBoxFAPNaoS.isSelected()){
+        }else if(!jCheckBoxFAPSimQ.isSelected() && !jCheckBoxFAPNao.isSelected() && !jCheckBoxFAPNaoS.isSelected()){
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Fez o Exame Preventivo ");
-        }else if(!jCheckBoxUDSim.isSelected() || !jCheckBoxUDNao.isSelected() || !jCheckBoxUDNaoS.isSelected()){
+        }else if(!jCheckBoxUDSim.isSelected() && !jCheckBoxUDNao.isSelected() && !jCheckBoxUDNaoS.isSelected()){
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Usa DIU ");
-        }else if(!jCheckBoxEGSim.isSelected() || jCheckBoxEGNao.isSelected() || jCheckBoxEGNaoS.isSelected()){
+        }else if(!jCheckBoxEGSim.isSelected() && jCheckBoxEGNao.isSelected() && jCheckBoxEGNaoS.isSelected()){
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Está Grávida");
-        }else if(!jCheckBoxPASim.isSelected() || jCheckBoxPANao.isSelected() || jCheckBoxPANaoS.isSelected()){
+        }else if(!jCheckBoxPASim.isSelected() && jCheckBoxPANao.isSelected() && jCheckBoxPANaoS.isSelected()){
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Usa Pílula Anticoncepcional");
-        }else if(!jCheckBoxHRMSim.isSelected() || jCheckBoxHRMNao.isSelected() || jCheckBoxHRMNaoS.isSelected()){
+        }else if(!jCheckBoxHRMSim.isSelected() && jCheckBoxHRMNao.isSelected() && jCheckBoxHRMNaoS.isSelected()){
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Usa Hormonio/Remédio para a Menopausa");
-        }else if(!jCheckBoxTRSim.isSelected() || !jCheckBoxTRNao.isSelected() || !jCheckBoxTRNaoS.isSelected()){
+        }else if(!jCheckBoxTRSim.isSelected() && !jCheckBoxTRNao.isSelected() && !jCheckBoxTRNaoS.isSelected()){
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Já Fez Tratamento Por Radiografia");
-        }else if(!jCheckBoxSRSSim.isSelected() || !jCheckBoxSRSNN.isSelected()){
+        }else if(!jCheckBoxSRSSim.isSelected() && !jCheckBoxSRSNN.isSelected()){
         JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Tem ou teve algum sangramento após relações sexuais");
-        }else if(!jCheckBoxSMSim.isSelected() || !jCheckBoxSMNNN.isSelected()){
+        }else if(!jCheckBoxSMSim.isSelected() && !jCheckBoxSMNNN.isSelected()){
         JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções Tem ou teve algum sangramento após a menopausa");
-        }else if(jTextFieldDataUMestruacao.equals("") || !jCheckBoxDUMNaoS.isSelected() || !jCheckBoxDUMNaoL.isSelected()){
+        }else if(jTextFieldDataUMestruacao.equals("") && !jCheckBoxDUMNaoS.isSelected() && !jCheckBoxDUMNaoL.isSelected()){
          JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Data Da Última Mestruação");
-        }
+        }else{
         anaminese ana=new anaminese();
-        
+        if(jCheckBoxMERastreamento.isSelected()){
+            ana.setMotivoExame(jCheckBoxMERastreamento.getText());
+        }else if(jCheckBoxMERepeticao.isSelected()){
+        ana.setMotivoExame(jCheckBoxMERepeticao.getText());
+        }else if(jCheckBoxMEseguimento.isSelected()){
+        ana.setMotivoExame(jCheckBoxMEseguimento.getText());
+        }
+        if(jCheckBoxFAPSimQ.isSelected()){
+            ana.setExamePreventivo(jTextFieldFAPAno.getText());
+        }else if(jCheckBoxFAPNao.isSelected()){
+            ana.setExamePreventivo(jCheckBoxFAPNao.getText());
+        }else if(jCheckBoxFAPNaoS.isSelected()){
+            ana.setExamePreventivo(jCheckBoxFAPNaoS.getText());
+        }
+        if(jCheckBoxUDSim.isSelected()){
+            ana.setDIU(jCheckBoxUDSim.getText());
+        }else if(jCheckBoxUDNao.isSelected()){
+            ana.setDIU(jCheckBoxUDNao.getText());
+        }else if(jCheckBoxUDNaoS.isSelected()){
+            ana.setDIU(jCheckBoxUDNaoS.getText());
+        }
+        if(jCheckBoxEGSim.isSelected()){
+            ana.setGravida(jCheckBoxEGSim.getText());
+        }else if(jCheckBoxEGNao.isSelected()){
+            ana.setGravida(jCheckBoxEGNao.getText());
+        }else if(jCheckBoxEGNaoS.isSelected()){
+            ana.setGravida(jCheckBoxEGNaoS.getText());
+        }
+        if(jCheckBoxPASim.isSelected()){
+            ana.setPAnticoncepcional(jCheckBoxPASim.getText());
+        }else if(jCheckBoxPANao.isSelected()){
+            ana.setPAnticoncepcional(jCheckBoxPANao.getText());
+        }else if(jCheckBoxPANaoS.isSelected()){
+            ana.setPAnticoncepcional(jCheckBoxPANaoS.getText());
+        }
+        if(jCheckBoxHRMSim.isSelected()){
+            ana.setRemedioMenopausa(jCheckBoxHRMSim.getText());
+        }else if(jCheckBoxHRMNao.isSelected()){
+            ana.setRemedioMenopausa(jCheckBoxHRMNao.getText());
+        }else if(jCheckBoxHRMNaoS.isSelected()){
+            ana.setRemedioMenopausa(jCheckBoxHRMNaoS.getText());
+        }
+        if(jCheckBoxTRSim.isSelected()){
+            ana.setRadiografia(jCheckBoxTRSim.getText());
+        }else if(jCheckBoxTRNao.isSelected()){
+            ana.setRadiografia(jCheckBoxTRNao.getText());
+        }else if(jCheckBoxTRNaoS.isSelected()){
+            ana.setRadiografia(jCheckBoxTRNaoS.getText());
+        }
+        if(jCheckBoxSRSSim.isSelected()){
+            ana.setSangramentoRelacoesSexuais(jCheckBoxSRSSim.getText());
+        }else if(jCheckBoxSRSNN.isSelected()){
+            ana.setSangramentoRelacoesSexuais(jCheckBoxSRSNN.getText());
+        }
+        if(jCheckBoxSMSim.isSelected()){
+            ana.setSangramentoMenopausa(jCheckBoxSMSim.getText());
+        }else if(jCheckBoxSMNNN.isSelected()){
+            ana.setSangramentoMenopausa(jCheckBoxSMNNN.getText());
+        }
+        if(!jCheckBoxDUMNaoS.isSelected() && !jCheckBoxDUMNaoL.isSelected()){
+            ana.setDUtimaMestruacao(jTextFieldDataUMestruacao.getText());
+        }else if(jCheckBoxDUMNaoS.isSelected()){
+            ana.setDUtimaMestruacao(jCheckBoxDUMNaoS.getText());
+        }else if(jCheckBoxDUMNaoL.isSelected()){
+            ana.setDUtimaMestruacao(jCheckBoxDUMNaoL.getText());
+        }
+        AnamineseDao dao= new AnamineseDao();
+        ana= dao.salvar(ana);
+        JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
+        dispose();
+        CadastroAnam prin = new CadastroAnam();
+        prin.setVisible(true);
+        }
     }//GEN-LAST:event_CAdastraMouseClicked
 
     private void jCheckBoxSRSNNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSRSNNActionPerformed
@@ -507,7 +589,7 @@ public class CadastroAnam extends javax.swing.JFrame {
 
     private void jCheckBoxPASimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPASimActionPerformed
         // TODO add your handling code here:
-       jCheckBoxPANao.setSelected(false);
+        jCheckBoxPANao.setSelected(false);
        jCheckBoxPANaoS.setSelected(false);
     }//GEN-LAST:event_jCheckBoxPASimActionPerformed
 
@@ -576,7 +658,7 @@ public class CadastroAnam extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxSMNNNActionPerformed
 
     private void jCheckBoxDUMNaoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDUMNaoSActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         jCheckBoxDUMNaoL.setSelected(false);
         jTextFieldDataUMestruacao.setVisible(false);
         
@@ -587,6 +669,56 @@ public class CadastroAnam extends javax.swing.JFrame {
         jTextFieldDataUMestruacao.setVisible(false);
         jCheckBoxDUMNaoS.setSelected(false);
     }//GEN-LAST:event_jCheckBoxDUMNaoLActionPerformed
+
+    private void LimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimparMouseClicked
+        // TODO add your handling code here:
+        jCheckBoxMERastreamento.setSelected(false);
+        jCheckBoxMERastreamento.setSelected(false);
+        jCheckBoxMEseguimento.setSelected(false);
+        //Exame preenventivo
+        jCheckBoxFAPSimQ.setSelected(false);
+        jCheckBoxFAPNao.setSelected(false);
+        jCheckBoxFAPNaoS.setSelected(false);
+        jTextFieldFAPAno.setText("");
+        //Usa DIU
+        jCheckBoxUDSim.setSelected(false);
+        jCheckBoxUDNao.setSelected(false);
+        jCheckBoxUDNaoS.setSelected(false);
+        //Esta gravida
+        jCheckBoxEGSim.setSelected(false);
+        jCheckBoxEGNao.setSelected(false);
+        jCheckBoxEGNaoS.setSelected(false);
+        //pilula antconsepsional
+       jCheckBoxPASim.setSelected(false);
+        jCheckBoxPANao.setSelected(false);
+       jCheckBoxPANaoS.setSelected(false);
+       //usa hormonios
+        jCheckBoxHRMSim.setSelected(false);
+        jCheckBoxHRMNao.setSelected(false);
+        jCheckBoxHRMNaoS.setSelected(false);
+        //tratamento por radiografia
+        jCheckBoxTRSim.setSelected(false);
+        jCheckBoxTRNao.setSelected(false);
+        jCheckBoxTRNaoS.setSelected(false);
+        //sangramento a pós relações sexuais
+        jCheckBoxSRSSim.setSelected(false);
+        jCheckBoxSRSNN.setSelected(false);
+        //Tem ou teve algum sangramento após a menopausa
+        jCheckBoxSMSim.setSelected(false);
+        jCheckBoxSMNNN.setSelected(false);
+        //Data da última mestruação
+        jCheckBoxDUMNaoS.setSelected(false);
+        jCheckBoxDUMNaoL.setSelected(false);
+        jTextFieldDataUMestruacao.setText("");
+        
+    }//GEN-LAST:event_LimparMouseClicked
+
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PrincipalADM prin = new PrincipalADM();
+        prin.setVisible(true);
+    }//GEN-LAST:event_VoltarMouseClicked
 
     /**
      * @param args the command line arguments
