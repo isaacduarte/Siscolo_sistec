@@ -101,7 +101,19 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
         });
         getContentPane().add(ButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 130, 50));
 
-        passwordSenha.setText("jPasswordField1");
+        passwordSenha.setText("********");
+        passwordSenha.setToolTipText("<html> informe sua senha </html>");
+        passwordSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        passwordSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordSenhaMouseClicked(evt);
+            }
+        });
+        passwordSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordSenhaKeyPressed(evt);
+            }
+        });
         getContentPane().add(passwordSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 200, 30));
 
         voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
@@ -157,7 +169,7 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
             usu= dao.salvar(usu);
             JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
             dispose();
-            CadastroUsuario1 Prin = new CadastroUsuario1();
+            PesquisarUsuario Prin = new PesquisarUsuario();
             Prin.setVisible(true);
         
         }
@@ -173,6 +185,18 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
        Prin.setVisible(true);
 
     }//GEN-LAST:event_voltarMouseClicked
+
+    private void passwordSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordSenhaKeyPressed
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordSenhaKeyPressed
+
+    private void passwordSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordSenhaMouseClicked
+        
+    passwordSenha.setText("");
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_passwordSenhaMouseClicked
 
     /**
      * @param args the command line arguments

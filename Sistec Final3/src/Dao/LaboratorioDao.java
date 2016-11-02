@@ -6,6 +6,9 @@
 package Dao;
 
 import classJava.Laboratorio;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -13,5 +16,16 @@ import classJava.Laboratorio;
  */
 public class LaboratorioDao extends genericDao<Laboratorio>{
     
-    
+    public List<Laboratorio> pesquisaId(){
+        List<Laboratorio> laboratorio;
+        try {
+            Query q = em.createNamedQuery("Laboratorio.pesquisaId");
+            laboratorio= q.getResultList();
+        } catch (Exception e) {
+            laboratorio = new ArrayList();
+        } finally{
+            em.close();
+        }
+        return laboratorio;
+    }
 }

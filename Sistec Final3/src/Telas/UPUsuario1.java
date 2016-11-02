@@ -174,7 +174,7 @@ public class UPUsuario1 extends javax.swing.JFrame {
             usu.setNivelDeAcesso((String) boxNivelUsuario.getSelectedItem());
             UsuarioDao dao= new UsuarioDao();
             usu= dao.salvar(usu);
-            JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
+            JOptionPane.showMessageDialog(null, "Usuario editado com sucesso");
             dispose();
             PesquisarUsuario Prin = new PesquisarUsuario();
             Prin.setVisible(true);

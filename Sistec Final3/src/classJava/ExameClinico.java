@@ -12,12 +12,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import Dao.EntidadeBase;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author pc isaac
  */
 @Entity
+@NamedQueries(
+    @NamedQuery(name="ExameClinico.pesquisaId",
+            query = "SELECT e FROM ExameClinico e "
+               )
+)
 @Table(name = "ExameClinico")
 public class ExameClinico implements EntidadeBase{
     @Id
