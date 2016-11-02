@@ -58,7 +58,7 @@ public void preenchendoTable(){
         Excluir2 = new javax.swing.JLabel();
         voltar2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        Edi1 = new javax.swing.JLabel();
         novo1 = new javax.swing.JLabel();
         Excluir1 = new javax.swing.JLabel();
         voltar = new javax.swing.JLabel();
@@ -124,8 +124,13 @@ public void preenchendoTable(){
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/pesquisaodsakda13232.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 40));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/buttonedit45.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 50, 60));
+        Edi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/buttonedit45.png"))); // NOI18N
+        Edi1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Edi1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(Edi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 50, 60));
 
         novo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/novopng.png"))); // NOI18N
         novo1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -243,6 +248,26 @@ TableRowSorter trs ;
         prin.setVisible(true);
     }//GEN-LAST:event_voltar2MouseClicked
 
+    private void Edi1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Edi1MouseClicked
+
+      if(jTableUsuario.getSelectedRow() != -1){
+             dispose();
+                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTableUsuario.getModel();
+                    int id=(int) (jTableUsuario.getValueAt(jTableUsuario.getSelectedRow(), 0));
+                    UsuarioDao dao=new UsuarioDao();
+                    Usuario usu=new Usuario();
+                    usu.setId(id);
+                    UPUsuario1 prin=new UPUsuario1();
+                    prin.exporta(usu);
+                    prin.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
+        
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Edi1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -286,13 +311,13 @@ TableRowSorter trs ;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Edi1;
     private javax.swing.JLabel Editar2;
     private javax.swing.JLabel Excluir1;
     private javax.swing.JLabel Excluir2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableUsuario;
     private javax.swing.JTextField jTextFieldFlitra;

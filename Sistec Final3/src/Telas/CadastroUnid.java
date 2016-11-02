@@ -47,7 +47,7 @@ public class CadastroUnid extends javax.swing.JFrame {
         Limpar = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        cod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -127,8 +127,8 @@ public class CadastroUnid extends javax.swing.JFrame {
         });
         getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, 70));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundouni2.jpg"))); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 490));
+        cod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundouni2.jpg"))); // NOI18N
+        getContentPane().add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 490));
 
         pack();
         setLocationRelativeTo(null);
@@ -231,8 +231,8 @@ public class CadastroUnid extends javax.swing.JFrame {
     private javax.swing.JLabel Cadastrar;
     private javax.swing.JLabel Limpar;
     private javax.swing.JLabel Voltar;
+    private javax.swing.JLabel cod;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

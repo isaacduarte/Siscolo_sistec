@@ -493,7 +493,7 @@ public class UpPaci extends javax.swing.JFrame {
              p.setPontoReferencia(jTextFieldPontoReferencia.getText());
              PacienteDao dao= new PacienteDao();
              p=dao.salvar(p);
-             JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
+             JOptionPane.showMessageDialog(null, "Paciente editado com sucesso");
             dispose();
             PesquisarPaciente Prin = new PesquisarPaciente();
             Prin.setVisible(true);

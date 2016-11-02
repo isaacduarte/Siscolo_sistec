@@ -5,7 +5,9 @@
  */
 package Telas;
 
+import Dao.ExameClinicoDao;
 import Dao.UsuarioDao;
+import classJava.ExameClinico;
 import classJava.Usuario;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -27,16 +29,18 @@ public class PesquisarExameClinico extends javax.swing.JFrame {
      */
     public PesquisarExameClinico() {
         initComponents();
-        preenchendoTable();
+        preenchendoTabelaExameClinico();
     }
-public void preenchendoTable(){
-         UsuarioDao dao=new UsuarioDao();
-            List<Usuario> usuario=dao.conAutenticar();
-          DefaultTableModel dtmUsuario = (DefaultTableModel) jTableUsuario.getModel();
-             if(usuario !=null){
-            for(Usuario u: usuario){
-            Object[] dados={u.getId(), u.getNome(), u.getEmail(), u.getLogin(), u.getSenha(), u.getNivelDeAcesso()};
-            dtmUsuario.addRow(dados);
+public void preenchendoTabelaExameClinico(){
+         ExameClinicoDao dao=new ExameClinicoDao();
+            List<ExameClinico> exameClinico=dao.pesquisaId();
+          DefaultTableModel dtmExameClinico = (DefaultTableModel) jTableUsuario.getModel();
+             if(exameClinico !=null){
+            for(ExameClinico e: exameClinico){
+            Object[] dados={e.getId(),
+                e.getInspecaoColo(),
+                e.getNumeroExame(), e.getSsdst(), e.getDataColeta(), e.getResponsavel()};
+            dtmExameClinico.addRow(dados);
             
             }}
     }
@@ -58,7 +62,7 @@ public void preenchendoTable(){
         Excluir2 = new javax.swing.JLabel();
         voltar2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        edi1 = new javax.swing.JLabel();
         novo1 = new javax.swing.JLabel();
         Excluir1 = new javax.swing.JLabel();
         voltar = new javax.swing.JLabel();
@@ -125,8 +129,13 @@ public void preenchendoTable(){
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/pesquisaodsakda13232.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 40));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/buttonedit45.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 50, 60));
+        edi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/buttonedit45.png"))); // NOI18N
+        edi1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                edi1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(edi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 50, 60));
 
         novo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/novopng.png"))); // NOI18N
         novo1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,14 +169,14 @@ public void preenchendoTable(){
 
     private void Excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Excluir2MouseClicked
                   if(jTableUsuario.getSelectedRow() != 1){
-                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTableUsuario.getModel();
+                    DefaultTableModel dtmEC = (DefaultTableModel) jTableUsuario.getModel();
                     int id=(int) (jTableUsuario.getValueAt(jTableUsuario.getSelectedRow(), 0));
-                    Usuario u=new Usuario();
-                    UsuarioDao dao=new UsuarioDao();
+                    ExameClinico e=new ExameClinico();
+                    ExameClinicoDao dao=new ExameClinicoDao();
                     System.out.println(id);
-                    dao.remover(Usuario.class, id);
-                      System.out.println(u);
-                    dtmUsuario.removeRow(jTableUsuario.getSelectedRow());
+                    dao.remover(ExameClinico.class, id);
+                      System.out.println(e);
+                    dtmEC.removeRow(jTableUsuario.getSelectedRow());
                   }else{
                       JOptionPane.showMessageDialog(null,"seleciona uma linha da tabela.");
                   }
@@ -175,40 +184,43 @@ public void preenchendoTable(){
 
     private void Excluir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Excluir1MouseClicked
         // TODO add your handling code here:
-         if(jTableUsuario.getSelectedRow() != 1){
-                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTableUsuario.getModel();
+          if(jTableUsuario.getSelectedRow() != 1){
+                    DefaultTableModel dtmEC = (DefaultTableModel) jTableUsuario.getModel();
                     int id=(int) (jTableUsuario.getValueAt(jTableUsuario.getSelectedRow(), 0));
-                    Usuario u=new Usuario();
-                    UsuarioDao dao=new UsuarioDao();
-                    
-                    dao.remover(Usuario.class, id);
-                    dtmUsuario.removeRow(jTableUsuario.getSelectedRow());
+                    ExameClinico e=new ExameClinico();
+                    ExameClinicoDao dao=new ExameClinicoDao();
+                    System.out.println(id);
+                    dao.remover(ExameClinico.class, id);
+                      System.out.println(e);
+                    dtmEC.removeRow(jTableUsuario.getSelectedRow());
+                  }else{
+                      JOptionPane.showMessageDialog(null,"seleciona uma linha da tabela.");
                   }
     }//GEN-LAST:event_Excluir1MouseClicked
 
     private void novo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_novo2MouseClicked
         dispose();
-        CadastroUsuario1 prin=new CadastroUsuario1();
+        CadastroExCli prin=new CadastroExCli();
         prin.setVisible(true);
     }//GEN-LAST:event_novo2MouseClicked
 
     private void novo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_novo1MouseClicked
         // TODO add your handling code here:
         dispose();
-        CadastroUsuario1 prin=new CadastroUsuario1();
+        CadastroExCli prin=new CadastroExCli();
         prin.setVisible(true);
     }//GEN-LAST:event_novo1MouseClicked
 
     private void Editar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar2MouseClicked
         if(jTableUsuario.getSelectedRow() != -1){
              dispose();
-                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTableUsuario.getModel();
+                    DefaultTableModel dtmExameClinico = (DefaultTableModel) jTableUsuario.getModel();
                     int id=(int) (jTableUsuario.getValueAt(jTableUsuario.getSelectedRow(), 0));
-                    UsuarioDao dao=new UsuarioDao();
-                    Usuario usu=new Usuario();
-                    usu.setId(id);
-                    UPUsuario1 prin=new UPUsuario1();
-                    prin.exporta(usu);
+                    ExameClinicoDao dao=new ExameClinicoDao();
+                    ExameClinico ec=new ExameClinico();
+                    ec.setId(id);
+                    UPExCli1 prin=new UPExCli1();
+                    prin.exporta(ec);
                     prin.setVisible(true);
         }else{
         JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
@@ -243,6 +255,25 @@ TableRowSorter trs ;
         PrincipalADM prin = new PrincipalADM();
         prin.setVisible(true);
     }//GEN-LAST:event_voltar2MouseClicked
+
+    private void edi1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edi1MouseClicked
+          if(jTableUsuario.getSelectedRow() != -1){
+             dispose();
+                    DefaultTableModel dtmExameClinico = (DefaultTableModel) jTableUsuario.getModel();
+                    int id=(int) (jTableUsuario.getValueAt(jTableUsuario.getSelectedRow(), 0));
+                    ExameClinicoDao dao=new ExameClinicoDao();
+                    ExameClinico ec=new ExameClinico();
+                    ec.setId(id);
+                    UPExCli1 prin=new UPExCli1();
+                    prin.exporta(ec);
+                    prin.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
+        
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edi1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -290,10 +321,10 @@ TableRowSorter trs ;
     private javax.swing.JLabel Editar2;
     private javax.swing.JLabel Excluir1;
     private javax.swing.JLabel Excluir2;
+    private javax.swing.JLabel edi1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableUsuario;
     private javax.swing.JTextField jTextFieldFlitra;
