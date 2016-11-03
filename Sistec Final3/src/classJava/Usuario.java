@@ -8,9 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
+@SequenceGenerator(name = "Usuario_Sequenc", sequenceName = "Usuario_Sequenc", initialValue = 1, allocationSize = 1)
 @NamedQueries(
         @NamedQuery(name="Usuario.conAutenticar",
                     query = "SELECT u FROM Usuario u "
@@ -19,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "Usuario")
 public class Usuario implements EntidadeBase{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequen_usuario")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Usuario_Sequenc")
     private int id;
     
     @Column(nullable = false)

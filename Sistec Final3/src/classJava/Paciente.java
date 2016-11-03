@@ -8,20 +8,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
+
+@SequenceGenerator(name = "Paciente_Sequenc", sequenceName = "Paciente_Sequenc", initialValue = 1, allocationSize = 1)
 @NamedQueries(
         @NamedQuery(name="Paciente.pesquisaId",
                     query = "SELECT p FROM Paciente p "
                 )
 )
-@Table(name = "paciente")
+@Table(name = "Paciente")
 public class Paciente implements EntidadeBase {
-    @Id
-    @GeneratedValue()
+   @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Paciente_Sequenc")
     private int id;
-    
+     
     @Column()
     private String cartaoSus;
     

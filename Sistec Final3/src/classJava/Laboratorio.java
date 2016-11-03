@@ -14,11 +14,14 @@ import javax.persistence.Table;
 import Dao.EntidadeBase;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 /**
  *
  * @author pc isaac
  */
 @Entity
+
+@SequenceGenerator(name = "Laboratorio_Sequenc", sequenceName = "Laboratorio_Sequenc", initialValue = 1, allocationSize = 1)
 @NamedQueries(
     @NamedQuery( name = "Laboratorio.pesquisaId",
             query = "SELECT l FROM Laboratorio l")
@@ -26,7 +29,7 @@ import javax.persistence.NamedQuery;
 @Table(name = "Laboratorio")
 public class Laboratorio implements EntidadeBase{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequen_Laboratorio")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Laboratorio_Sequenc")
     private int id;
     
     @Column(nullable = false)
