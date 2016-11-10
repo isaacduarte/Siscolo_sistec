@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import Dao.EntidadeBase;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -47,6 +48,9 @@ public class ExameClinico implements EntidadeBase{
     
     @Column(nullable = false)
     private String responsavel;
+
+    @OneToOne
+    private Paciente paciente;
 
     @Override
     public int getId() {

@@ -37,7 +37,7 @@ public class Login extends javax.swing.JFrame {
         textLogin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         passwordSenha = new javax.swing.JPasswordField();
-        boxNivelAcesso = new javax.swing.JComboBox<>();
+        boxNivelAcesso = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         ButtonEntra = new javax.swing.JButton();
         ButtonCancelar = new javax.swing.JButton();
@@ -67,7 +67,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        boxNivelAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha o nivel", "Administrador", "Atendente", "Digitador" }));
+        boxNivelAcesso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escolha o nivel", "Administrador", "Atendente", "Digitador" }));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/niveis.png"))); // NOI18N
 

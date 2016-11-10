@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import Dao.EntidadeBase;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -27,6 +28,10 @@ import javax.persistence.SequenceGenerator;
     @NamedQuery( name = "anaminese.pesquisaId",
             query = "SELECT a FROM anaminese a")
 )
+@NamedQuery( name = "anaminese.pesquisaJoin",
+            query = "SELECT a FROM anaminese a")
+
+
 @Table(name = "Anaminese")
 public class anaminese implements EntidadeBase{
     @Id
@@ -62,6 +67,9 @@ public class anaminese implements EntidadeBase{
         
     @Column
     private String DUtimaMestruacao;
+    
+    @OneToOne
+    private Paciente paciente;
     
     @Override
     public int getId() {
