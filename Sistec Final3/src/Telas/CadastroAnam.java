@@ -26,7 +26,6 @@ public class CadastroAnam extends javax.swing.JFrame {
     public void addcombobox(){
      PacienteDao dao=new PacienteDao();
             List<Paciente> paciente=dao.pesquisaId();
-            int cont=0;
             for(Paciente p: paciente){
                 Object[] items = {"Escolha um  Paciente", p.getNomePaciente()};
                 DefaultComboBoxModel model = new DefaultComboBoxModel(items);
@@ -125,7 +124,7 @@ public class CadastroAnam extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Fez o exame preventivo (Pepanicolaou) alguma vez?");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 165, -1, 10));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 10));
 
         jCheckBoxFAPSimQ.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxFAPSimQ.setText("Sim. Quando fez o último exame?");
@@ -521,6 +520,8 @@ public class CadastroAnam extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções Tem ou teve algum sangramento após a menopausa");
         } else if (jTextFieldDataUMestruacao.equals("") && !jCheckBoxDUMNaoS.isSelected() && !jCheckBoxDUMNaoL.isSelected()) {
             JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções De Data Da Última Mestruação");
+        } else if(boxnomePaciente.equals("Escolha um  Paciente")){
+            JOptionPane.showMessageDialog(null, "Escolha um Paciente");
         } else {
             anaminese ana = new anaminese();
             if (jCheckBoxMERastreamento.isSelected()) {
@@ -589,12 +590,24 @@ public class CadastroAnam extends javax.swing.JFrame {
             } else if (jCheckBoxDUMNaoL.isSelected()) {
                 ana.setDUtimaMestruacao(jCheckBoxDUMNaoL.getText());
             }
+            PacienteDao pdao=new PacienteDao();
+            List<Paciente> paciente=pdao.pesquisaId();
+            for(Paciente p: paciente){
+            if(p.getNomePaciente().equals(boxnomePaciente.getSelectedItem())){
+                p.setId(p.getId());
+            ana.setPaciente(p);
             AnamineseDao dao = new AnamineseDao();
             ana = dao.salvar(ana);
             JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
             dispose();
             CadastroAnam prin = new CadastroAnam();
             prin.setVisible(true);
+            break;
+            }else{
+            JOptionPane.showMessageDialog(null, "não deu certo"+p.getNomePaciente());
+            }
+            }
+            
         }
     }//GEN-LAST:event_CAdastraMouseClicked
 

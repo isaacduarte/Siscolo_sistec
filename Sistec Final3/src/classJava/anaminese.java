@@ -159,5 +159,13 @@ public class anaminese implements EntidadeBase{
     public void setDUtimaMestruacao(String DUtimaMestruacao) {
         this.DUtimaMestruacao = DUtimaMestruacao;
     }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
     
 }
