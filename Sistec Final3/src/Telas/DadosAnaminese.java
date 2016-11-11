@@ -184,14 +184,14 @@ public class DadosAnaminese extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         dispose();
-        PrincipalADM prin = new PrincipalADM();
+        PesquisarAna prin = new PesquisarAna();
         prin.setVisible(true);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
         dispose();
-        PrincipalADM prin = new PrincipalADM();
+        PesquisarAna prin = new PesquisarAna();
         prin.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseClicked
 TableRowSorter trs ;

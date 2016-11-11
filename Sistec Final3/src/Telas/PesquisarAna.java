@@ -182,16 +182,16 @@ public class PesquisarAna extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluir2MouseClicked
-        // TODO add your handling code here:
+        
         if(jTable1.getSelectedRow() != 1){
-                    DefaultTableModel dtmLab = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-                    Laboratorio l=new Laboratorio();
-                    LaboratorioDao dao=new LaboratorioDao();
+                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTable1.getModel();
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+                    anaminese ana = new anaminese();
+                    AnamineseDao dao = new AnamineseDao();
                     System.out.println(id);
-                    dao.remover(Laboratorio.class, id);
-                      System.out.println(l);
-                    dtmLab.removeRow(jTable1.getSelectedRow());
+                    dao.remover(anaminese.class, id);
+                      System.out.println(ana);
+                    dtmUsuario.removeRow(jTable1.getSelectedRow());
                   }else{
                       JOptionPane.showMessageDialog(null,"seleciona uma linha da tabela.");
                   }
@@ -218,15 +218,14 @@ public class PesquisarAna extends javax.swing.JFrame {
     private void Novo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo1MouseClicked
         // TODO add your handling code here:
         dispose();
-        CadastroLab lab = new CadastroLab();
+        CadastroAnam lab = new CadastroAnam();
         lab.setVisible(true);
     }//GEN-LAST:event_Novo1MouseClicked
 
     private void Novo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo2MouseClicked
-        // TODO add your handling code here:
-        
+      
         dispose();
-        CadastroLab lab = new CadastroLab();
+        CadastroAnam lab = new CadastroAnam();
         lab.setVisible(true);
     }//GEN-LAST:event_Novo2MouseClicked
 
@@ -235,12 +234,12 @@ public class PesquisarAna extends javax.swing.JFrame {
                 if(jTable1.getSelectedRow() != -1){
              dispose();
                     DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-                    LaboratorioDao dao = new LaboratorioDao();
-                    Laboratorio l= new Laboratorio();
-                    l.setId(id);
-                    UPLab1 prin=new UPLab1();
-                    prin.Exporta(l);
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+                    AnamineseDao dao = new AnamineseDao();
+                    anaminese ana= new anaminese();
+                    ana.setId(id);
+                    upAnam prin=new upAnam();
+                    prin.Exporta(ana);
                     prin.setVisible(true);
         }else{
         JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
@@ -249,15 +248,14 @@ public class PesquisarAna extends javax.swing.JFrame {
     }//GEN-LAST:event_Editar1MouseClicked
 
     private void Editar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar2MouseClicked
-        // TODO add your handling code here:
         if(jTable1.getSelectedRow() != -1){
              dispose();
                     DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 2));
                     AnamineseDao dao = new AnamineseDao();
                     anaminese ana= new anaminese();
                     ana.setId(id);
-                    DadosAnaminese prin=new DadosAnaminese();
+                    upAnam prin=new upAnam();
                     prin.Exporta(ana);
                     prin.setVisible(true);
         }else{
