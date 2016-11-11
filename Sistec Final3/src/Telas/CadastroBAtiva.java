@@ -32,7 +32,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel24 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -89,7 +88,8 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        boxnomePaciente = new javax.swing.JComboBox<String>();
         jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -102,10 +102,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(710, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setText("Nome da Mulher");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,7 +290,16 @@ public class CadastroBAtiva extends javax.swing.JFrame {
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
         getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(741, 492, -1, 69));
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 240, 30));
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/user icon.png"))); // NOI18N
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 40, -1));
+
+        boxnomePaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxnomePacienteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxnomePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 190, 30));
         getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 240, 30));
         getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 140, 30));
 
@@ -327,7 +332,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 150, 30));
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundoba.jpg"))); // NOI18N
-        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 570));
+        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 870, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -352,6 +357,10 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void boxnomePacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxnomePacienteActionPerformed
+
+    }//GEN-LAST:event_boxnomePacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,6 +409,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxnomePaciente;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -435,7 +445,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -446,6 +455,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -458,7 +468,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
