@@ -11,8 +11,8 @@ import javax.persistence.Query;
  * @author pc isaac
  */
 public class BuscaAtivaDao extends genericDao<BuscaAtiva>{
-    public List<BuscaAtivaDao> pesquisaId(){
-        List<BuscaAtivaDao> busacAtiva;
+    public List<BuscaAtiva> pesquisaId(){
+        List<BuscaAtiva> busacAtiva;
         try {
             Query q = em.createNamedQuery("BuscaAtiva.PesquisaId");
             busacAtiva= q.getResultList();

@@ -1,4 +1,3 @@
-//OLHA AQUI
 package Telas;
 
 import classJava.anaminese;
