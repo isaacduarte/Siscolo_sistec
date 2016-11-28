@@ -23,14 +23,14 @@ public class CadastroAnam extends javax.swing.JFrame {
     }
     //setando o nome do paciente na jcomboBox.
     public void addcombobox(){
-     PacienteDao dao=new PacienteDao();
+            PacienteDao dao=new PacienteDao();
             List<Paciente> paciente=dao.pesquisaId();
+            boxnomePaciente.addItem("Selecione um Paciente");
             for(Paciente p: paciente){
-                Object[] items = {"Escolha um  Paciente", p.getNomePaciente()};
-                DefaultComboBoxModel model = new DefaultComboBoxModel(items);
-                boxnomePaciente.setModel(model);
-                
+                boxnomePaciente.addItem(p.getNomePaciente());
             }
+            
+                
     }
 
     @SuppressWarnings("unchecked")
@@ -416,7 +416,7 @@ public class CadastroAnam extends javax.swing.JFrame {
                 boxnomePacienteActionPerformed(evt);
             }
         });
-        getContentPane().add(boxnomePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 180, 30));
+        getContentPane().add(boxnomePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 240, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/user icon.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));

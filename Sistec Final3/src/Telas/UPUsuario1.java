@@ -46,7 +46,6 @@ public class UPUsuario1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         boxNivelUsuario = new javax.swing.JComboBox<String>();
-        ButtonLimpar = new javax.swing.JButton();
         ButtonSalvar = new javax.swing.JButton();
         passwordSenha = new javax.swing.JPasswordField();
         voltar = new javax.swing.JLabel();
@@ -84,15 +83,6 @@ public class UPUsuario1 extends javax.swing.JFrame {
         boxNivelUsuario.setToolTipText("");
         getContentPane().add(boxNivelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 398, 204, 28));
 
-        ButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
-        ButtonLimpar.setContentAreaFilled(false);
-        ButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonLimparActionPerformed(evt);
-            }
-        });
-        getContentPane().add(ButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 120, 50));
-
         ButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/salvardos23.png"))); // NOI18N
         ButtonSalvar.setContentAreaFilled(false);
         ButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,17 +119,6 @@ public class UPUsuario1 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparActionPerformed
-       textNome.setText("");
-       textLoginl.setText("");
-       textEmail.setText("");
-       passwordSenha.setText("******");
-       boxNivelUsuario.setSelectedItem("Escolha o nivel");
-       
-        
-       
-    }//GEN-LAST:event_ButtonLimparActionPerformed
    public void exporta(Usuario usu){
     UsuarioDao dao =new UsuarioDao();
     usu=dao.obter(Usuario.class, usu.getId());
@@ -233,7 +212,6 @@ public class UPUsuario1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonLimpar;
     private javax.swing.JButton ButtonSalvar;
     private javax.swing.JComboBox<String> boxNivelUsuario;
     private javax.swing.JLabel cod;

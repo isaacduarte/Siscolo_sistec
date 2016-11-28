@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import Dao.AnamineseDao;
+import Dao.PacienteDao;
+import classJava.Paciente;
+import java.util.List;
 
 public class upAnam extends javax.swing.JFrame {
 
@@ -20,8 +23,8 @@ public class upAnam extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jCheckBoxMERastreamento = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
         jCheckBoxMERepeticao = new javax.swing.JCheckBox();
         jCheckBoxMEseguimento = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
@@ -47,6 +50,7 @@ public class upAnam extends javax.swing.JFrame {
         jCheckBoxHRMNao = new javax.swing.JCheckBox();
         jCheckBoxHRMNaoS = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jCheckBoxTRSim = new javax.swing.JCheckBox();
         jCheckBoxTRNao = new javax.swing.JCheckBox();
         jCheckBoxTRNaoS = new javax.swing.JCheckBox();
@@ -61,20 +65,16 @@ public class upAnam extends javax.swing.JFrame {
         jCheckBoxSMSim = new javax.swing.JCheckBox();
         jCheckBoxSMNNN = new javax.swing.JCheckBox();
         CAdastra = new javax.swing.JLabel();
-        Pesquisar = new javax.swing.JLabel();
-        Limpar = new javax.swing.JLabel();
+        Pacinte = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         cod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(710, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Motivo do Exame");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jCheckBoxMERastreamento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxMERastreamento.setText("Rastreamento");
@@ -83,7 +83,11 @@ public class upAnam extends javax.swing.JFrame {
                 jCheckBoxMERastreamentoActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBoxMERastreamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        getContentPane().add(jCheckBoxMERastreamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Motivo do Exame");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         jCheckBoxMERepeticao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxMERepeticao.setText("Repetição(Exame alterado ASCUS/Baixo grau)");
@@ -92,7 +96,7 @@ public class upAnam extends javax.swing.JFrame {
                 jCheckBoxMERepeticaoActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBoxMERepeticao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        getContentPane().add(jCheckBoxMERepeticao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jCheckBoxMEseguimento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxMEseguimento.setText("Seguimento(Pos diagnóstica calposcopia/Tratamento)");
@@ -101,7 +105,7 @@ public class upAnam extends javax.swing.JFrame {
                 jCheckBoxMEseguimentoActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBoxMEseguimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        getContentPane().add(jCheckBoxMEseguimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Fez o exame preventivo (Pepanicolaou) alguma vez?");
@@ -267,6 +271,10 @@ public class upAnam extends javax.swing.JFrame {
         jLabel8.setText("Já fez tratamento por radiografia?");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("Panciente:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
         jCheckBoxTRSim.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCheckBoxTRSim.setText("Sim");
         jCheckBoxTRSim.addActionListener(new java.awt.event.ActionListener() {
@@ -373,16 +381,8 @@ public class upAnam extends javax.swing.JFrame {
         });
         getContentPane().add(CAdastra, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
 
-        Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
-        getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, -1, -1));
-
-        Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
-        Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LimparMouseClicked(evt);
-            }
-        });
-        getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, -1, -1));
+        Pacinte.setText("jLabel13");
+        getContentPane().add(Pacinte, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
         Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -390,10 +390,14 @@ public class upAnam extends javax.swing.JFrame {
                 VoltarMouseClicked(evt);
             }
         });
-        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, -1, 70));
+        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, 60));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundoanam.jpg"))); // NOI18N
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 530));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Motivo do Exame");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         cod.setText("jLabel3");
         getContentPane().add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
@@ -408,6 +412,7 @@ public class upAnam extends javax.swing.JFrame {
 public void Exporta(anaminese ana){
         AnamineseDao dao = new AnamineseDao();
         ana = dao.obter(anaminese.class, ana.getId());
+        Pacinte.setText(ana.getPaciente().getNomePaciente());
         cod.setText(""+ana.getId());
         if(ana.getMotivoExame().equals("Rastreamento")){
             jCheckBoxMERastreamento.setSelected(true);
@@ -637,6 +642,13 @@ public void Exporta(anaminese ana){
             } else if (jCheckBoxDUMNaoL.isSelected()) {
                 ana.setDUtimaMestruacao(jCheckBoxDUMNaoL.getText());
             }
+            
+            PacienteDao pdao=new PacienteDao();
+            List<Paciente> paciente=pdao.pesquisaId();
+            for(Paciente p: paciente){
+            if(p.getNomePaciente().equals(Pacinte.getText())){
+                p.setId(p.getId());
+                ana.setPaciente(p);
              int i = Integer.parseInt(cod.getText());
             ana.setId(i);
             AnamineseDao dao = new AnamineseDao();
@@ -647,7 +659,7 @@ public void Exporta(anaminese ana){
             prin.setVisible(true);
             
             
-        }
+        }}}
     }//GEN-LAST:event_CAdastraMouseClicked
 
     private void jCheckBoxSRSNNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSRSNNActionPerformed
@@ -738,49 +750,6 @@ public void Exporta(anaminese ana){
         jCheckBoxDUMNaoS.setSelected(false);
     }//GEN-LAST:event_jCheckBoxDUMNaoLActionPerformed
 
-    private void LimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimparMouseClicked
-        // TODO add your handling code here:
-        jCheckBoxMERastreamento.setSelected(false);
-        jCheckBoxMERastreamento.setSelected(false);
-        jCheckBoxMEseguimento.setSelected(false);
-        //Exame preenventivo
-        jCheckBoxFAPSimQ.setSelected(false);
-        jCheckBoxFAPNao.setSelected(false);
-        jCheckBoxFAPNaoS.setSelected(false);
-        jTextFieldFAPAno.setText("");
-        //Usa DIU
-        jCheckBoxUDSim.setSelected(false);
-        jCheckBoxUDNao.setSelected(false);
-        jCheckBoxUDNaoS.setSelected(false);
-        //Esta gravida
-        jCheckBoxEGSim.setSelected(false);
-        jCheckBoxEGNao.setSelected(false);
-        jCheckBoxEGNaoS.setSelected(false);
-        //pilula antconsepsional
-        jCheckBoxPASim.setSelected(false);
-        jCheckBoxPANao.setSelected(false);
-        jCheckBoxPANaoS.setSelected(false);
-        //usa hormonios
-        jCheckBoxHRMSim.setSelected(false);
-        jCheckBoxHRMNao.setSelected(false);
-        jCheckBoxHRMNaoS.setSelected(false);
-        //tratamento por radiografia
-        jCheckBoxTRSim.setSelected(false);
-        jCheckBoxTRNao.setSelected(false);
-        jCheckBoxTRNaoS.setSelected(false);
-        //sangramento a pós relações sexuais
-        jCheckBoxSRSSim.setSelected(false);
-        jCheckBoxSRSNN.setSelected(false);
-        //Tem ou teve algum sangramento após a menopausa
-        jCheckBoxSMSim.setSelected(false);
-        jCheckBoxSMNNN.setSelected(false);
-        //Data da última mestruação
-        jCheckBoxDUMNaoS.setSelected(false);
-        jCheckBoxDUMNaoL.setSelected(false);
-        jTextFieldDataUMestruacao.setText("");
-
-    }//GEN-LAST:event_LimparMouseClicked
-
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
          dispose();
         PesquisarAna prin = new PesquisarAna();
@@ -831,8 +800,7 @@ public void Exporta(anaminese ana){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CAdastra;
-    private javax.swing.JLabel Limpar;
-    private javax.swing.JLabel Pesquisar;
+    private javax.swing.JLabel Pacinte;
     private javax.swing.JLabel Voltar;
     private javax.swing.JLabel cod;
     private javax.swing.JCheckBox jCheckBoxDUMNaoL;
@@ -865,8 +833,10 @@ public void Exporta(anaminese ana){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

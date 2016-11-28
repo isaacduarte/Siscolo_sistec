@@ -43,9 +43,10 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
         textEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        boxNivelUsuario = new javax.swing.JComboBox<>();
+        boxNivelUsuario = new javax.swing.JComboBox<String>();
         ButtonLimpar = new javax.swing.JButton();
         ButtonSalvar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         passwordSenha = new javax.swing.JPasswordField();
         voltar = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -80,7 +81,7 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
         jLabel6.setText("Nivel de Usuário");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 363, -1, -1));
 
-        boxNivelUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha o nivel", "Administrador", "Atendente", "Digitador" }));
+        boxNivelUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escolha o nivel", "Administrador", "Atendente", "Digitador" }));
         getContentPane().add(boxNivelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 398, 204, 28));
 
         ButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
@@ -90,7 +91,7 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
                 ButtonLimparActionPerformed(evt);
             }
         });
-        getContentPane().add(ButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 120, 50));
+        getContentPane().add(ButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 120, 50));
 
         ButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/salvardos23.png"))); // NOI18N
         ButtonSalvar.setContentAreaFilled(false);
@@ -101,9 +102,17 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
         });
         getContentPane().add(ButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 130, 50));
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
+
         passwordSenha.setText("********");
         passwordSenha.setToolTipText("<html> informe sua senha </html>");
-        passwordSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        passwordSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         passwordSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordSenhaMouseClicked(evt);
@@ -131,7 +140,7 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
                 voltarMouseClicked(evt);
             }
         });
-        getContentPane().add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, 70));
+        getContentPane().add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, 70));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/imagefundomenor.jpg"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3, 466, 530));
@@ -198,6 +207,14 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_passwordSenhaMouseClicked
 
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PesquisarUsuario prin = new PesquisarUsuario();
+        prin.setVisible(true);
+
+    }//GEN-LAST:event_jLabel10MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +259,7 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
     private javax.swing.JButton ButtonSalvar;
     private javax.swing.JComboBox<String> boxNivelUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

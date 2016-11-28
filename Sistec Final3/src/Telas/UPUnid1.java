@@ -44,8 +44,6 @@ public class UPUnid1 extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldProntuario = new javax.swing.JFormattedTextField();
         Cadastrar = new javax.swing.JLabel();
-        Limpar = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
         cod = new javax.swing.JLabel();
 
@@ -101,23 +99,7 @@ public class UPUnid1 extends javax.swing.JFrame {
                 CadastrarMouseClicked(evt);
             }
         });
-        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
-
-        Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
-        Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LimparMouseClicked(evt);
-            }
-        });
-        getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, -1, -1));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
         Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,7 +107,7 @@ public class UPUnid1 extends javax.swing.JFrame {
                 VoltarMouseClicked(evt);
             }
         });
-        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, 70));
+        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, 70));
 
         cod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundouni2.jpg"))); // NOI18N
         getContentPane().add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 490));
@@ -176,22 +158,6 @@ public class UPUnid1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CadastrarMouseClicked
 
-    private void LimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimparMouseClicked
-        // TODO add your handling code here:
-        jTextFieldCNESUS.setText("");
-            jTextFieldMunicipio.setText("");
-            jTextFieldProntuario.setText("");
-            jTextFieldUF.setText("");
-            jTextFieldUnidadeSaude.setText("");
-            jTextFieldnProtocolo.setText("");
-    }//GEN-LAST:event_LimparMouseClicked
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-        dispose();
-        
-    }//GEN-LAST:event_jLabel10MouseClicked
-
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
         // TODO add your handling code here:
                 dispose();
@@ -239,10 +205,8 @@ public class UPUnid1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cadastrar;
-    private javax.swing.JLabel Limpar;
     private javax.swing.JLabel Voltar;
     private javax.swing.JLabel cod;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

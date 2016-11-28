@@ -66,13 +66,14 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         Novo2 = new javax.swing.JLabel();
         Editar2 = new javax.swing.JLabel();
         ExcluirL = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        valtar1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Editar1 = new javax.swing.JLabel();
         Novo1 = new javax.swing.JLabel();
         excluir2 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        voltar = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        nivel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -148,13 +149,13 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         });
         getContentPane().add(ExcluirL, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltaricon.png"))); // NOI18N
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        valtar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltaricon.png"))); // NOI18N
+        valtar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                valtar1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
+        getContentPane().add(valtar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/pesquisaodsakda13232.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 40));
@@ -183,20 +184,25 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         });
         getContentPane().add(excluir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 60, 60));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltarpng.png"))); // NOI18N
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltarpng.png"))); // NOI18N
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                voltarMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 40));
+        getContentPane().add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/fundolegal.jpg"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
 
+        nivel.setText("jLabel3");
+        getContentPane().add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public void nivelAcesso(Usuario u){
+    nivel.setText(u.getNivelDeAcesso());
+}
     private void excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluir2MouseClicked
         // TODO add your handling code here:
         if(jTable1.getSelectedRow() != 1){
@@ -233,19 +239,30 @@ public class PesquisarPaciente extends javax.swing.JFrame {
 
     private void Novo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo1MouseClicked
         // TODO add your handling code here:
+        
         dispose();
-        CadastroPaci paci = new CadastroPaci();
-        paci.setVisible(true);
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        CadastroPaci Prin = new CadastroPaci();
+        Prin.nivelAcesso(u);
+        Prin.setVisible(true);
     }//GEN-LAST:event_Novo1MouseClicked
 
     private void Novo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo2MouseClicked
         // TODO add your handling code here:
         
         dispose();
-        CadastroPaci paci = new CadastroPaci();
-        paci.setVisible(true);
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        CadastroPaci Prin = new CadastroPaci();
+        Prin.nivelAcesso(u);
+        Prin.setVisible(true);
     }//GEN-LAST:event_Novo2MouseClicked
 
+        
+        
     private void Editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar1MouseClicked
         // TODO add your handling code here:
                 if(jTable1.getSelectedRow() != -1){
@@ -255,7 +272,10 @@ public class PesquisarPaciente extends javax.swing.JFrame {
                     PacienteDao dao = new PacienteDao();
                     Paciente p= new Paciente();
                     p.setId(id);
+                    Usuario u = new Usuario();
+                    u.setNivelDeAcesso(nivel.getText());
                     UpPaci prin=new UpPaci();
+                    prin.nivelAcesso(u);
                     prin.exporta(p);
                     prin.setVisible(true);
         }else{
@@ -282,19 +302,49 @@ public class PesquisarPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Editar2MouseClicked
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void valtar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valtar1MouseClicked
         // TODO add your handling code here:
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        if(nivel.equals("Administrador")){
         dispose();
         PrincipalADM prin = new PrincipalADM();
+        prin.nivelAcesso(u);
         prin.setVisible(true);
-    }//GEN-LAST:event_jLabel6MouseClicked
+        }else if(nivel.equals("Digitador")){
+         dispose();
+        PrincipalDigitador prin = new PrincipalDigitador();
+        prin.nivelAcesso(u);
+        prin.setVisible(true);
+        }else{
+         dispose();
+        PrincipalAtendente prin = new PrincipalAtendente();
+        prin.nivelAcesso(u);
+        prin.setVisible(true);
+        }
+    }//GEN-LAST:event_valtar1MouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
         // TODO add your handling code here:
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        if(nivel.equals("Administrador")){
         dispose();
         PrincipalADM prin = new PrincipalADM();
+        prin.nivelAcesso(u);
         prin.setVisible(true);
-    }//GEN-LAST:event_jLabel11MouseClicked
+        }else if(nivel.equals("Digitador")){
+         dispose();
+        PrincipalDigitador prin = new PrincipalDigitador();
+        prin.nivelAcesso(u);
+        prin.setVisible(true);
+        }else{
+         dispose();
+        PrincipalAtendente prin = new PrincipalAtendente();
+        prin.nivelAcesso(u);
+        prin.setVisible(true);
+        }
+    }//GEN-LAST:event_voltarMouseClicked
 TableRowSorter trs ;
     private void FiltraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FiltraKeyTyped
         // TODO add your handling code here:
@@ -362,11 +412,12 @@ TableRowSorter trs ;
     private javax.swing.JLabel Novo2;
     private javax.swing.JLabel excluir2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel nivel;
+    private javax.swing.JLabel valtar1;
+    private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }

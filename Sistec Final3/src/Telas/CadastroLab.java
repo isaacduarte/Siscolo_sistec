@@ -105,7 +105,7 @@ public class CadastroLab extends javax.swing.JFrame {
                 CadastrarMouseClicked(evt);
             }
         });
-        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, -1, -1));
+        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
 
         Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
         Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,7 +116,7 @@ public class CadastroLab extends javax.swing.JFrame {
         getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
 
         Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
-        getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
         getContentPane().add(jTextFieldRecebido, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 110, 30));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N

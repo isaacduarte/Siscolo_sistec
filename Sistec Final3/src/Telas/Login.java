@@ -203,7 +203,9 @@ public class Login extends javax.swing.JFrame {
                         if(u.getNivelDeAcesso().equals(boxNivelAcesso.getSelectedItem())){
                              if(u.getNivelDeAcesso().equals("Administrador")){
                                     dispose();
+                                    u.setNivelDeAcesso(u.getNivelDeAcesso());
                                     PrincipalADM Prin = new PrincipalADM();
+                                        Prin.nivelAcesso(u);
                                         Prin.setVisible(true);                                     
                                  break;
                              }else if(u.getNivelDeAcesso().equals("Digitador")){
@@ -214,7 +216,9 @@ public class Login extends javax.swing.JFrame {
                              }
                              else if(u.getNivelDeAcesso().equals("Atendente")){
                                  dispose();
+                                 u.setNivelDeAcesso(u.getNivelDeAcesso());
                                     PrincipalAtendente Prin = new PrincipalAtendente();
+                                     Prin.nivelAcesso(u);
                                         Prin.setVisible(true);
                                  break;
                              }

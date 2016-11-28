@@ -96,11 +96,10 @@ public class UpPaci extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
         cod = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        nivel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -303,13 +302,7 @@ public class UpPaci extends javax.swing.JFrame {
                 jLabel24MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 443, -1, -1));
-
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
-        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 443, -1, -1));
-
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 443, -1, -1));
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
         Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -317,13 +310,16 @@ public class UpPaci extends javax.swing.JFrame {
                 VoltarMouseClicked(evt);
             }
         });
-        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, -1, 70));
+        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, -1, 70));
 
         cod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundolegal585.jpg"))); // NOI18N
         getContentPane().add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
 
         jLabel19.setText("jLabel19");
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
+
+        nivel.setText("jLabel27");
+        getContentPane().add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -370,6 +366,10 @@ public class UpPaci extends javax.swing.JFrame {
     jTextFieldTelefone.setText(p.getTelefone());
     jTextFieldPontoReferencia.setText(p.getPontoReferencia());
    }
+   
+   public void nivelAcesso(Usuario u){
+    nivel.setText(u.getNivelDeAcesso());
+}
     private void jTextNomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeMaeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNomeMaeActionPerformed
@@ -507,10 +507,13 @@ public class UpPaci extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel24MouseClicked
 
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
-        // TODO add your handling code here:
-        dispose();
-        PrincipalADM prin = new PrincipalADM();
-        prin.setVisible(true);
+         dispose();
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        PesquisarPaciente Prin = new PesquisarPaciente();
+        Prin.nivelAcesso(u);
+        Prin.setVisible(true);
     }//GEN-LAST:event_VoltarMouseClicked
 
     /**
@@ -580,8 +583,6 @@ public class UpPaci extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -611,5 +612,6 @@ public class UpPaci extends javax.swing.JFrame {
     private javax.swing.JTextField jTextcartaoSus;
     private javax.swing.JTextField jTextcpf;
     private javax.swing.JTextField jTextnomePaciente;
+    private javax.swing.JLabel nivel;
     // End of variables declaration//GEN-END:variables
 }

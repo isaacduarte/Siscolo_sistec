@@ -8,6 +8,8 @@
     <class>classJava.ExameClinico</class>
     <class>classJava.Laboratorio</class>
     <class>classJava.anaminese</class>
+    <class>classJava.BuscaAtiva</class>
+    <class>classJava.citopatologico</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistec?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

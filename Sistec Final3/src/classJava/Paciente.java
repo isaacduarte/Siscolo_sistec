@@ -1,16 +1,21 @@
 package classJava;
 
 import Dao.EntidadeBase;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 
@@ -88,6 +93,19 @@ public class Paciente implements EntidadeBase {
     
     @Column()
     private String pontoReferencia;
+
+    @OneToMany(mappedBy = "Paciente")
+    @JoinColumn(name = "BuscaAtiva_Id")
+    private List<BuscaAtiva> BuscaAtiva;
+
+    public List<BuscaAtiva> getBuscaAtiva() {
+        return BuscaAtiva;
+    }
+
+    public void setBuscaAtiva(List<BuscaAtiva> BuscaAtiva) {
+       this.BuscaAtiva = BuscaAtiva;
+    }
+
 
     @Override
     public int getId() {

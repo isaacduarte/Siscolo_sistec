@@ -46,8 +46,6 @@ public class UPExCli1 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldResponsavel = new javax.swing.JTextField();
         Cadastrar = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        Limpar = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         cod = new javax.swing.JLabel();
@@ -146,24 +144,13 @@ public class UPExCli1 extends javax.swing.JFrame {
         });
         getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 351, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 351, -1, -1));
-
-        Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
-        Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LimparMouseClicked(evt);
-            }
-        });
-        getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 351, -1, -1));
-
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
         Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 VoltarMouseClicked(evt);
             }
         });
-        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 331, -1, 70));
+        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, -1, 70));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Sinais sugestivos de doenças sexualmente transmissiveis?");
@@ -280,20 +267,6 @@ public class UPExCli1 extends javax.swing.JFrame {
         jCheckBoxsim.setSelected(false);
     }//GEN-LAST:event_jCheckBoxnaoActionPerformed
 
-    private void LimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimparMouseClicked
-        // TODO add your handling code here:
-        jCheckBoxAlterado.setSelected(false);
-        jCheckBoxAusente.setSelected(false);
-        jCheckBoxNormal.setSelected(false);
-        jCheckBoxColonaoVisualizado.setSelected(false);
-        jCheckBoxsim.setSelected(false);
-        jCheckBoxnao.setSelected(false);
-        jTextFieldNumeroExame.setText("");
-        jTextFieldResponsavel.setText("");
-        jTextFielddataColeta.setText("");
-        
-    }//GEN-LAST:event_LimparMouseClicked
-
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
         // TODO add your handling code here:
                 dispose();
@@ -341,7 +314,6 @@ public class UPExCli1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cadastrar;
-    private javax.swing.JLabel Limpar;
     private javax.swing.JLabel Voltar;
     private javax.swing.JLabel cod;
     private javax.swing.JCheckBox jCheckBoxAlterado;
@@ -355,7 +327,6 @@ public class UPExCli1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JFormattedTextField jTextFieldNumeroExame;
     private javax.swing.JTextField jTextFieldResponsavel;

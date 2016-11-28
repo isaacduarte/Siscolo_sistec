@@ -8,6 +8,7 @@ import classJava.ExameClinico;
 import formatador.classes.Formatador;
 import javax.swing.JOptionPane;
 import Dao.ExameClinicoDao;
+import classJava.Usuario;
 /**
  *
  * @author Caio
@@ -46,11 +47,12 @@ public class CadastroExCli extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldResponsavel = new javax.swing.JTextField();
         Cadastrar = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        Pesquisar = new javax.swing.JLabel();
         Limpar = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        nivel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -146,8 +148,13 @@ public class CadastroExCli extends javax.swing.JFrame {
         });
         getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 351, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 351, -1, -1));
+        Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
+        Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PesquisarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 351, -1, -1));
 
         Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
         Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,10 +179,15 @@ public class CadastroExCli extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundoexamecli3_1.jpg"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 430));
 
+        nivel.setText("jLabel5");
+        getContentPane().add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+public void nivelAcesso(Usuario u){
+    nivel.setText(u.getNivelDeAcesso());
+}
     private void jTextFieldNumeroExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroExameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumeroExameActionPerformed
@@ -214,9 +226,13 @@ public class CadastroExCli extends javax.swing.JFrame {
              ExameClinicoDao dao=new ExameClinicoDao();
              ex= dao.salvar(ex);
              JOptionPane.showMessageDialog(this, "Cadastrado Com Sucesso");
-             dispose();
-             CadastroExCli cli = new CadastroExCli();
-             cli.setVisible(true);
+            dispose();
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        CadastroExCli Prin = new CadastroExCli();
+        Prin.nivelAcesso(u);
+        Prin.setVisible(true);
         }
         
     }//GEN-LAST:event_CadastrarMouseClicked
@@ -274,10 +290,36 @@ public class CadastroExCli extends javax.swing.JFrame {
 
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
         // TODO add your handling code here:
-                dispose();
+               Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        if(nivel.equals("Administrador")){
+        dispose();
         PrincipalADM prin = new PrincipalADM();
+        prin.nivelAcesso(u);
         prin.setVisible(true);
+        }else if(nivel.equals("Digitador")){
+         dispose();
+        PrincipalDigitador prin = new PrincipalDigitador();
+        prin.nivelAcesso(u);
+        prin.setVisible(true);
+        }else{
+         dispose();
+        PrincipalAtendente prin = new PrincipalAtendente();
+        prin.nivelAcesso(u);
+        prin.setVisible(true);
+        }
     }//GEN-LAST:event_VoltarMouseClicked
+
+    private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
+        // TODO add your handling code here:
+         dispose();
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        PesquisarExameClinico Prin = new PesquisarExameClinico();
+        Prin.nivelAcesso(u);
+        Prin.setVisible(true);
+    }//GEN-LAST:event_PesquisarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -318,6 +360,7 @@ public class CadastroExCli extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cadastrar;
     private javax.swing.JLabel Limpar;
+    private javax.swing.JLabel Pesquisar;
     private javax.swing.JLabel Voltar;
     private javax.swing.JCheckBox jCheckBoxAlterado;
     private javax.swing.JCheckBox jCheckBoxAusente;
@@ -331,10 +374,10 @@ public class CadastroExCli extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JFormattedTextField jTextFieldNumeroExame;
     private javax.swing.JTextField jTextFieldResponsavel;
     private javax.swing.JFormattedTextField jTextFielddataColeta;
+    private javax.swing.JLabel nivel;
     // End of variables declaration//GEN-END:variables
 }

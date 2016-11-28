@@ -5,6 +5,13 @@
  */
 package Telas;
 
+import Dao.citopatologicoDao;
+import classJava.Laboratorio;
+import classJava.Paciente;
+import classJava.UnidadeSaude;
+import classJava.citopatologico;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Caio
@@ -27,80 +34,423 @@ public class CadastroMicrobio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        JCBLactoba = new javax.swing.JCheckBox();
+        JCBCocos = new javax.swing.JCheckBox();
+        JCBSugestivo = new javax.swing.JCheckBox();
+        JCBActinomy = new javax.swing.JCheckBox();
+        JCBCandida = new javax.swing.JCheckBox();
+        JCBTrichomonas = new javax.swing.JCheckBox();
+        JCBEfeito = new javax.swing.JCheckBox();
+        JCBBacilos = new javax.swing.JCheckBox();
+        JCBOutrosB = new javax.swing.JCheckBox();
+        JCBOutrosE = new javax.swing.JCheckBox();
+        JTOutrosB = new javax.swing.JTextField();
+        Cancelar = new javax.swing.JLabel();
+        JTOutrosE = new javax.swing.JTextField();
+        Cadastra = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLId = new javax.swing.JLabel();
+        jLObsG = new javax.swing.JLabel();
+        jLatipiasCelulasGlandulares = new javax.swing.JLabel();
+        celulasAtipicas = new javax.swing.JLabel();
+        jLavaliacaopreAnalitica = new javax.swing.JLabel();
+        jLSPCitotecnico = new javax.swing.JLabel();
+        jLDiagnostico = new javax.swing.JLabel();
+        jLDataResulta = new javax.swing.JLabel();
+        jLadequabilidadeMaterial = new javax.swing.JLabel();
+        jLCelulasAtipicas = new javax.swing.JLabel();
+        jLatipiaCelulasEscamosas = new javax.swing.JLabel();
+        jLResponsavel = new javax.swing.JLabel();
+        jLidpaci = new javax.swing.JLabel();
+        jLIdLab = new javax.swing.JLabel();
+        jLIdUni = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(560, 380));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox1.setText("Lactobacillus sp");
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 7, -1, -1));
+        JCBLactoba.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBLactoba.setText("Lactobacillus sp");
+        JCBLactoba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBLactobaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBLactoba, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 7, -1, -1));
 
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox2.setText("Cocos");
-        getContentPane().add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        JCBCocos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBCocos.setText("Cocos");
+        JCBCocos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBCocosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBCocos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox3.setText("Sugestivo de Chlamydia sp");
-        getContentPane().add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, -1, -1));
+        JCBSugestivo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBSugestivo.setText("Sugestivo de Chlamydia sp");
+        JCBSugestivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBSugestivoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBSugestivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, -1, -1));
 
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox4.setText("Actinomyces sp");
-        getContentPane().add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, -1, -1));
+        JCBActinomy.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBActinomy.setText("Actinomyces sp");
+        JCBActinomy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBActinomyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBActinomy, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, -1, -1));
 
-        jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox5.setText("Candida sp");
-        getContentPane().add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 99, -1, -1));
+        JCBCandida.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBCandida.setText("Candida sp");
+        JCBCandida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBCandidaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBCandida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 99, -1, -1));
 
-        jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox6.setText("Trichomonas vaginalis");
-        getContentPane().add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 122, -1, -1));
+        JCBTrichomonas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBTrichomonas.setText("Trichomonas vaginalis");
+        JCBTrichomonas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBTrichomonasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBTrichomonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 122, -1, -1));
 
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox7.setText("Efeito citopático compativel com vírus do grupo Herpes");
-        getContentPane().add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, -1, -1));
+        JCBEfeito.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBEfeito.setText("Efeito citopático compativel com vírus do grupo Herpes");
+        JCBEfeito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBEfeitoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBEfeito, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, -1, -1));
 
-        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox8.setText("Bacilos suprocitoplasmáticos (sugestivos de Gardnerella/Mobiluncus)");
-        getContentPane().add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 168, -1, -1));
+        JCBBacilos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JCBBacilos.setText("Bacilos suprocitoplasmáticos (sugestivos de Gardnerella/Mobiluncus)");
+        JCBBacilos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBBacilosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBBacilos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 168, -1, -1));
 
-        jCheckBox9.setText("Outros bacilos:");
-        getContentPane().add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 209, -1, -1));
+        JCBOutrosB.setText("Outros bacilos:");
+        JCBOutrosB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBOutrosBActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBOutrosB, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 209, -1, -1));
 
-        jCheckBox10.setText("Outros; especificar:");
-        getContentPane().add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 290, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 270, -1));
+        JCBOutrosE.setText("Outros; especificar:");
+        JCBOutrosE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBOutrosEActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBOutrosE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        getContentPane().add(JTOutrosB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 290, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/cadastrarcamp.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 291, -1, -1));
+        Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconesNovos/cancelar.png"))); // NOI18N
+        Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CancelarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
+        getContentPane().add(JTOutrosE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 270, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 291, -1, -1));
+        Cadastra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconesNovos/proximo.png"))); // NOI18N
+        Cadastra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CadastraMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Cadastra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundop15c2.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 350));
+
+        jLId.setText("jLabel2");
+        getContentPane().add(jLId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 40, -1));
+
+        jLObsG.setText("jLabel10");
+        getContentPane().add(jLObsG, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 50, -1));
+
+        jLatipiasCelulasGlandulares.setText("jLabel9");
+        getContentPane().add(jLatipiasCelulasGlandulares, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 40, -1));
+
+        celulasAtipicas.setText("jLabel6");
+        getContentPane().add(celulasAtipicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 40, -1));
+
+        jLavaliacaopreAnalitica.setText("jLabel2");
+        getContentPane().add(jLavaliacaopreAnalitica, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 40, -1));
+
+        jLSPCitotecnico.setText("jLabel11");
+        getContentPane().add(jLSPCitotecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 50, -1));
+
+        jLDiagnostico.setText("jLabel7");
+        getContentPane().add(jLDiagnostico, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 40, -1));
+
+        jLDataResulta.setText("jLabel2");
+        getContentPane().add(jLDataResulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 40, -1));
+
+        jLadequabilidadeMaterial.setText("jLabel2");
+        getContentPane().add(jLadequabilidadeMaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 40, -1));
+
+        jLCelulasAtipicas.setText("jLabel2");
+        getContentPane().add(jLCelulasAtipicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 40, -1));
+
+        jLatipiaCelulasEscamosas.setText("jLabel8");
+        getContentPane().add(jLatipiaCelulasEscamosas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 40, -1));
+
+        jLResponsavel.setText("jLabel12");
+        getContentPane().add(jLResponsavel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 50, -1));
+
+        jLidpaci.setText("jLabel2");
+        getContentPane().add(jLidpaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 40, -1));
+
+        jLIdLab.setText("jLabel1");
+        getContentPane().add(jLIdLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
+
+        jLIdUni.setText("jLabel1");
+        getContentPane().add(jLIdUni, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JCBLactobaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBLactobaActionPerformed
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBLactobaActionPerformed
+
+    private void JCBCocosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBCocosActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBCocosActionPerformed
+
+    private void JCBSugestivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBSugestivoActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBSugestivoActionPerformed
+
+    private void JCBActinomyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBActinomyActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBActinomyActionPerformed
+
+    private void JCBCandidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBCandidaActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBCandidaActionPerformed
+
+    private void JCBTrichomonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBTrichomonasActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+    }//GEN-LAST:event_JCBTrichomonasActionPerformed
+
+    private void JCBEfeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBEfeitoActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBEfeitoActionPerformed
+
+    private void JCBBacilosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBBacilosActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBBacilosActionPerformed
+
+    private void JCBOutrosBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBOutrosBActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosE.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBOutrosBActionPerformed
+
+    private void JCBOutrosEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBOutrosEActionPerformed
+        // TODO add your handling code here:
+                JCBLactoba.setSelected(false);
+        JCBActinomy.setSelected(false);
+        JCBBacilos.setSelected(false);
+        JCBCandida.setSelected(false);
+        JCBCocos.setSelected(false);
+        JCBEfeito.setSelected(false);
+        JCBOutrosB.setSelected(false);
+        JCBSugestivo.setSelected(false);
+        JCBTrichomonas.setSelected(false);
+    }//GEN-LAST:event_JCBOutrosEActionPerformed
+
+    private void CadastraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastraMouseClicked
+        // TODO add your handling code here:
+    if(!JCBActinomy.isSelected() && !JCBBacilos.isSelected() && !JCBCandida.isSelected() && !JCBCocos.isSelected()
+      && !JCBEfeito.isSelected() && !JCBLactoba.isSelected() && !JCBOutrosB.isSelected() && !JCBOutrosE.isSelected()
+      && !JCBSugestivo.isSelected() &&!JCBTrichomonas.isSelected()){
+            
+            JOptionPane.showMessageDialog(null, "Selecione Umas Das Opções");
+   }else{
+     citopatologico cito = new citopatologico();
+     if(JCBActinomy.isSelected()){
+         cito.setMicrobiologia(JCBActinomy.getText());
+     }else if(JCBBacilos.isSelected()){
+     cito.setMicrobiologia(JCBBacilos.getText());
+     }else if(JCBCandida.isSelected()){
+         cito.setMicrobiologia(JCBCandida.getText());
+     }else if(JCBCocos.isSelected()){
+         cito.setMicrobiologia(JCBCocos.getText());
+     }else if(JCBEfeito.isSelected()){
+         cito.setMicrobiologia(JCBEfeito.getText());
+     }else if(JCBLactoba.isSelected()){
+         cito.setMicrobiologia(JCBLactoba.getText());
+     }else if(JCBOutrosB.isSelected()){
+         cito.setMicrobiologia(JTOutrosB.getText());
+     }else if(JCBOutrosE.isSelected()){
+         cito.setMicrobiologia(JTOutrosE.getText());
+     }else if(JCBSugestivo.isSelected()){
+         cito.setMicrobiologia(JCBSugestivo.getText());
+     }else if(JCBTrichomonas.isSelected()){
+         cito.setMicrobiologia(JCBTrichomonas.getText());
+     }
+        int i = Integer.parseInt(jLId.getText());
+            cito.setId(i);
+            int ip =Integer.parseInt(jLidpaci.getText());
+            Paciente p = new Paciente();
+            p.setId(ip);
+            cito.setPaciente(p);
+            
+            
+            int iUni =Integer.parseInt(jLIdUni.getText());
+            UnidadeSaude uni = new UnidadeSaude();
+            uni.setId(iUni);
+            cito.setUnidadeSaude(uni);
+            
+            int iLab =Integer.parseInt(jLIdLab.getText());
+            Laboratorio lab = new Laboratorio();
+            lab.setId(iLab);
+            cito.setLaboratorio(lab);
+            
+            
+            cito.setAtipiasCelulasEscamosas(jLatipiaCelulasEscamosas.getText());
+            cito.setAtipiasCelulasGlandulares(jLatipiasCelulasGlandulares.getText());
+            cito.setAvaliacaoPreAnalitica(jLavaliacaopreAnalitica.getText());
+            cito.setCelulasAtipicas(jLCelulasAtipicas.getText());
+            cito.setDataResultado(jLDataResulta.getText());
+            cito.setAdquabilidadeMaterial(jLadequabilidadeMaterial.getText());
+            cito.setDiagnosticoDescritivo(jLDiagnostico.getText());
+            cito.setObsG(jLObsG.getText());
+            cito.setResponsavel(jLResponsavel.getText());
+            cito.setSPCitotecnico(jLSPCitotecnico.getText());
+            citopatologicoDao dao = new citopatologicoDao();
+            cito = dao.salvar(cito);
+            cito.setId(cito.getId());
+            JOptionPane.showMessageDialog(null, "Passo efetuado com sucesso");
+            CadastroCelulasATI prin = new CadastroCelulasATI();
+            prin.cadastroCont(cito);
+            prin.setVisible(true);
+            dispose();
+       
+    }
+    }//GEN-LAST:event_CadastraMouseClicked
+
+    private void CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_CancelarMouseClicked
+   public void cadastroCont(citopatologico cito){
+    
+        citopatologicoDao dao = new citopatologicoDao();
+        cito = dao.obter(citopatologico.class, cito.getId());
+        jLId.setText(""+cito.getId());
+        jLIdLab.setText(""+cito.getLaboratorio().getId());
+        jLIdUni.setText(""+cito.getUnidadeSaude().getId());
+        jLidpaci.setText(""+cito.getPaciente().getId());
+        jLadequabilidadeMaterial.setText(cito.getAdquabilidadeMaterial());
+        jLavaliacaopreAnalitica.setText(cito.getAvaliacaoPreAnalitica());
+        jLatipiasCelulasGlandulares.setText(cito.getAtipiasCelulasGlandulares());
+        jLatipiaCelulasEscamosas.setText(cito.getAtipiasCelulasEscamosas());
+        jLSPCitotecnico.setText(cito.getSPCitotecnico());
+        jLResponsavel.setText(cito.getResponsavel());
+        jLObsG.setText(cito.getObsG());
+        jLDiagnostico.setText(cito.getDiagnosticoDescritivo());
+        jLDataResulta.setText(cito.getDataResultado());
+        jLCelulasAtipicas.setText(cito.getCelulasAtipicas());
+}
     /**
      * @param args the command line arguments
      */
@@ -137,20 +487,35 @@ public class CadastroMicrobio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel Cadastra;
+    private javax.swing.JLabel Cancelar;
+    private javax.swing.JCheckBox JCBActinomy;
+    private javax.swing.JCheckBox JCBBacilos;
+    private javax.swing.JCheckBox JCBCandida;
+    private javax.swing.JCheckBox JCBCocos;
+    private javax.swing.JCheckBox JCBEfeito;
+    private javax.swing.JCheckBox JCBLactoba;
+    private javax.swing.JCheckBox JCBOutrosB;
+    private javax.swing.JCheckBox JCBOutrosE;
+    private javax.swing.JCheckBox JCBSugestivo;
+    private javax.swing.JCheckBox JCBTrichomonas;
+    private javax.swing.JTextField JTOutrosB;
+    private javax.swing.JTextField JTOutrosE;
+    private javax.swing.JLabel celulasAtipicas;
+    private javax.swing.JLabel jLCelulasAtipicas;
+    private javax.swing.JLabel jLDataResulta;
+    private javax.swing.JLabel jLDiagnostico;
+    private javax.swing.JLabel jLId;
+    private javax.swing.JLabel jLIdLab;
+    private javax.swing.JLabel jLIdUni;
+    private javax.swing.JLabel jLObsG;
+    private javax.swing.JLabel jLResponsavel;
+    private javax.swing.JLabel jLSPCitotecnico;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLadequabilidadeMaterial;
+    private javax.swing.JLabel jLatipiaCelulasEscamosas;
+    private javax.swing.JLabel jLatipiasCelulasGlandulares;
+    private javax.swing.JLabel jLavaliacaopreAnalitica;
+    private javax.swing.JLabel jLidpaci;
     // End of variables declaration//GEN-END:variables
 }

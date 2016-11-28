@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import classJava.Usuario;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 
@@ -21,7 +22,9 @@ public class PrincipalADM extends javax.swing.JFrame {
         initComponents();
         setIcon();
     }
-
+public void nivelAcesso(Usuario u){
+    nivel.setText(u.getNivelDeAcesso());
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,16 +40,17 @@ public class PrincipalADM extends javax.swing.JFrame {
         Cadastra = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        nivel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItemDadosAnamnese = new javax.swing.JMenuItem();
-        jMenuItemunidadeSaude = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        UsuarioMenu = new javax.swing.JMenuItem();
+        PacienteMenu = new javax.swing.JMenuItem();
+        ExameClinicoMenu = new javax.swing.JMenuItem();
+        LaboratorioClinicoMenu = new javax.swing.JMenuItem();
+        DadosAnamineseMenu = new javax.swing.JMenuItem();
+        UnidadeSaudeMenu = new javax.swing.JMenuItem();
+        exameCipatologicoMenu = new javax.swing.JMenuItem();
+        BuscaAtivaMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         PesquisarUsuario = new javax.swing.JMenuItem();
         PesquisarPaciente = new javax.swing.JMenuItem();
@@ -100,71 +104,79 @@ public class PrincipalADM extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/imagefundofinal.jpg"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, -1));
 
+        nivel.setText("nivel");
+        getContentPane().add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
+
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenu1.setText("Cadastrar");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/usuariopng.png"))); // NOI18N
-        jMenuItem1.setText("Usuário");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        UsuarioMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/usuariopng.png"))); // NOI18N
+        UsuarioMenu.setText("Usuário");
+        UsuarioMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                UsuarioMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(UsuarioMenu);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/patient-icon.png"))); // NOI18N
-        jMenuItem2.setText("Paciente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        PacienteMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/patient-icon.png"))); // NOI18N
+        PacienteMenu.setText("Paciente");
+        PacienteMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                PacienteMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(PacienteMenu);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/examepng.png"))); // NOI18N
-        jMenuItem3.setText("Exame Clínico");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        ExameClinicoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/examepng.png"))); // NOI18N
+        ExameClinicoMenu.setText("Exame Clínico");
+        ExameClinicoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                ExameClinicoMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(ExameClinicoMenu);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/laboratoriopng.png"))); // NOI18N
-        jMenuItem4.setText("Láboratório Clínico");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        LaboratorioClinicoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/laboratoriopng.png"))); // NOI18N
+        LaboratorioClinicoMenu.setText("Láboratório Clínico");
+        LaboratorioClinicoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                LaboratorioClinicoMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(LaboratorioClinicoMenu);
 
-        jMenuItemDadosAnamnese.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/anamnesepng.png"))); // NOI18N
-        jMenuItemDadosAnamnese.setText("Dados Anamnese");
-        jMenuItemDadosAnamnese.addActionListener(new java.awt.event.ActionListener() {
+        DadosAnamineseMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/anamnesepng.png"))); // NOI18N
+        DadosAnamineseMenu.setText("Dados Anamnese");
+        DadosAnamineseMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemDadosAnamneseActionPerformed(evt);
+                DadosAnamineseMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemDadosAnamnese);
+        jMenu1.add(DadosAnamineseMenu);
 
-        jMenuItemunidadeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/download490.png"))); // NOI18N
-        jMenuItemunidadeSaude.setText("Unidade de Saúde");
-        jMenuItemunidadeSaude.addActionListener(new java.awt.event.ActionListener() {
+        UnidadeSaudeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/download490.png"))); // NOI18N
+        UnidadeSaudeMenu.setText("Unidade de Saúde");
+        UnidadeSaudeMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemunidadeSaudeActionPerformed(evt);
+                UnidadeSaudeMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemunidadeSaude);
+        jMenu1.add(UnidadeSaudeMenu);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/icon_011.png"))); // NOI18N
-        jMenuItem7.setText("Exame Cipatológico");
-        jMenu1.add(jMenuItem7);
+        exameCipatologicoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/icon_011.png"))); // NOI18N
+        exameCipatologicoMenu.setText("Exame Cipatológico");
+        jMenu1.add(exameCipatologicoMenu);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/documentpng.png"))); // NOI18N
-        jMenuItem8.setText("Busca Ativa");
-        jMenu1.add(jMenuItem8);
+        BuscaAtivaMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/documentpng.png"))); // NOI18N
+        BuscaAtivaMenu.setText("Busca Ativa");
+        BuscaAtivaMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscaAtivaMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(BuscaAtivaMenu);
 
         jMenuBar1.add(jMenu1);
 
@@ -235,6 +247,11 @@ public class PrincipalADM extends javax.swing.JFrame {
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/documentpng.png"))); // NOI18N
         jMenuItem16.setText("Busca Ativa");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem16);
 
         jMenuBar1.add(jMenu2);
@@ -263,18 +280,22 @@ public class PrincipalADM extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void UsuarioMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioMenuActionPerformed
         dispose();
         CadastroUsuario1 Prin = new CadastroUsuario1();
         Prin.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_UsuarioMenuActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void PacienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteMenuActionPerformed
         // TODO add your handling code here:
         dispose();
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
         CadastroPaci Prin = new CadastroPaci();
+        Prin.nivelAcesso(u);
         Prin.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_PacienteMenuActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
          dispose();
@@ -300,8 +321,12 @@ public class PrincipalADM extends javax.swing.JFrame {
     }//GEN-LAST:event_PesquisarUsuarioActionPerformed
 
     private void PesquisarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarPacienteActionPerformed
-         dispose();
-        PesquisarPaciente prin=new PesquisarPaciente();
+         Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        dispose();
+        PesquisarPaciente prin = new PesquisarPaciente();
+        prin.nivelAcesso(u);
         prin.setVisible(true);
     }//GEN-LAST:event_PesquisarPacienteActionPerformed
 
@@ -311,33 +336,37 @@ public class PrincipalADM extends javax.swing.JFrame {
         prin.setVisible(true);
     }//GEN-LAST:event_CadastraMouseClicked
 
-    private void jMenuItemunidadeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemunidadeSaudeActionPerformed
+    private void UnidadeSaudeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnidadeSaudeMenuActionPerformed
         // TODO add your handling code here:
         dispose();
         CadastroUnid prin=new CadastroUnid();
         prin.setVisible(true);
-    }//GEN-LAST:event_jMenuItemunidadeSaudeActionPerformed
+    }//GEN-LAST:event_UnidadeSaudeMenuActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void ExameClinicoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExameClinicoMenuActionPerformed
         // TODO add your handling code here:
         dispose();
-        CadastroExCli ex = new CadastroExCli();
-        ex.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        CadastroExCli Prin = new CadastroExCli();
+        Prin.nivelAcesso(u);
+        Prin.setVisible(true);
+    }//GEN-LAST:event_ExameClinicoMenuActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void LaboratorioClinicoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LaboratorioClinicoMenuActionPerformed
         // TODO add your handling code here:
         dispose();
         CadastroLab lab =new CadastroLab();
         lab.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_LaboratorioClinicoMenuActionPerformed
 
-    private void jMenuItemDadosAnamneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDadosAnamneseActionPerformed
+    private void DadosAnamineseMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DadosAnamineseMenuActionPerformed
         // TODO add your handling code here:
                 dispose();
         CadastroAnam prin = new CadastroAnam();
         prin.setVisible(true);
-    }//GEN-LAST:event_jMenuItemDadosAnamneseActionPerformed
+    }//GEN-LAST:event_DadosAnamineseMenuActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
@@ -366,6 +395,20 @@ public class PrincipalADM extends javax.swing.JFrame {
         PesquisarUnidadeSaude1 uni = new PesquisarUnidadeSaude1();
         uni.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void BuscaAtivaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscaAtivaMenuActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        CadastroBAtiva ba = new CadastroBAtiva();
+        ba.setVisible(true);
+    }//GEN-LAST:event_BuscaAtivaMenuActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        PesquisarBuscaAtiva ba = new PesquisarBuscaAtiva();
+        ba.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -407,9 +450,17 @@ public class PrincipalADM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem BuscaAtivaMenu;
     private javax.swing.JLabel Cadastra;
+    private javax.swing.JMenuItem DadosAnamineseMenu;
+    private javax.swing.JMenuItem ExameClinicoMenu;
+    private javax.swing.JMenuItem LaboratorioClinicoMenu;
+    private javax.swing.JMenuItem PacienteMenu;
     private javax.swing.JMenuItem PesquisarPaciente;
     private javax.swing.JMenuItem PesquisarUsuario;
+    private javax.swing.JMenuItem UnidadeSaudeMenu;
+    private javax.swing.JMenuItem UsuarioMenu;
+    private javax.swing.JMenuItem exameCipatologicoMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -421,7 +472,6 @@ public class PrincipalADM extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
@@ -430,13 +480,7 @@ public class PrincipalADM extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItemDadosAnamnese;
-    private javax.swing.JMenuItem jMenuItemunidadeSaude;
+    private javax.swing.JLabel nivel;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {

@@ -2,14 +2,18 @@
 package classJava;
 
 import Dao.EntidadeBase;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -55,8 +59,29 @@ public class BuscaAtiva implements EntidadeBase{
     @Column(nullable = false)
     private String Obs;
     
-    @OneToOne
-    private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name = "Unidade_Suade_Id")
+    private UnidadeSaude UnidadeSaude;
+    @ManyToOne ()
+    @JoinColumn(name = "Paciente_Id")
+    private Paciente Paciente;
+
+    public Paciente getPaciente() {
+        return Paciente;
+    }
+
+    public void setPaciente(Paciente Paciente) {
+        this.Paciente = Paciente;
+    }
+
+    public UnidadeSaude getUnidadeSaude() {
+        return UnidadeSaude;
+    }
+
+    public void setUnidadeSaude(UnidadeSaude UnidadeSaude) {
+        this.UnidadeSaude = UnidadeSaude;
+    }
+    
     
     @Override
     public int getId() {
@@ -147,12 +172,5 @@ public class BuscaAtiva implements EntidadeBase{
         this.Obs = Obs;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-    
 }

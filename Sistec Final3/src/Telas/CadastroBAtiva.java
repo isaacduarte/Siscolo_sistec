@@ -1,6 +1,6 @@
-
 package Telas;
 
+import Dao.BuscaAtivaDao;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 import Dao.PacienteDao;
@@ -9,15 +9,16 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import classJava.BuscaAtiva;
-/**
- *
- * @author CAIO
- */
+import Dao.UnidadeSaudeDao;
+import classJava.UnidadeSaude;
+import java.util.ArrayList;
+
 public class CadastroBAtiva extends javax.swing.JFrame {
 
     public CadastroBAtiva() {
         initComponents();
         setIcon();
+        exibirUnidade();
         exibirJComboBox();
         //tira a visualização do laudo da biopsia
         jLabel11.setVisible(false);
@@ -28,7 +29,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         jCheckBoxLBNICIN.setVisible(false);
         jCheckBoxLBOutNeoplasias.setVisible(false);
         /////////////////////////////////////////////
-        //tira a visualização não localização e obito
+        //tira a visualização não localização e obito//
         
         Obito.setVisible(false);
         naoLocalizada.setVisible(false);
@@ -42,10 +43,18 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     public void exibirJComboBox(){
         PacienteDao dao = new PacienteDao();
         List<Paciente> paciente= dao.pesquisaId();
+        boxnomePaciente.addItem("Selecione Um Paciente");
         for(Paciente p: paciente){
-        Object[] nomes={"Escolha um  Paciente", p.getNomePaciente()};
-            DefaultComboBoxModel model= new DefaultComboBoxModel(nomes);
-            boxnomePaciente.setModel(model);
+        boxnomePaciente.addItem(p.getNomePaciente());
+        }
+        
+    }
+        public void exibirUnidade(){
+        UnidadeSaudeDao unidao = new UnidadeSaudeDao();
+        List<UnidadeSaude> unidadesaude= unidao.pesquisaId();
+        boxnomeUnidadeSaude.addItem("Escolha Uma Unidade de Saúde");
+        for(UnidadeSaude uni: unidadesaude){
+            boxnomeUnidadeSaude.addItem(uni.getUnidadeSaude());
         }
     }
     @SuppressWarnings("unchecked")
@@ -103,8 +112,10 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         Pesquisar = new javax.swing.JLabel();
         Voltar = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         boxnomePaciente = new javax.swing.JComboBox<String>();
         jTextFieldDataExame = new javax.swing.JTextField();
+        boxnomeUnidadeSaude = new javax.swing.JComboBox<String>();
         jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -406,24 +417,49 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 492, -1, -1));
 
         Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
+        Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LimparMouseClicked(evt);
+            }
+        });
         getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 492, -1, -1));
 
         Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
+        Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PesquisarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 492, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(741, 492, -1, 69));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/user icon.png"))); // NOI18N
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 40, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/download490.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, -1));
 
         boxnomePaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxnomePacienteActionPerformed(evt);
             }
         });
-        getContentPane().add(boxnomePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 190, 30));
+        getContentPane().add(boxnomePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 240, 30));
         getContentPane().add(jTextFieldDataExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 140, 30));
+
+        boxnomeUnidadeSaude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxnomeUnidadeSaudeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxnomeUnidadeSaude, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 240, 30));
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundoba.jpg"))); // NOI18N
         getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 570));
@@ -434,7 +470,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
 
     private void boxnomePacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxnomePacienteActionPerformed
 
-        
     }//GEN-LAST:event_boxnomePacienteActionPerformed
 
     private void CadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastrarMouseClicked
@@ -538,8 +573,43 @@ public class CadastroBAtiva extends javax.swing.JFrame {
             }else if(jCheckBoxIOvisitadomiciliar.isSelected()){
                 ba.setInformacaoObtida(jCheckBoxIOvisitadomiciliar.getText());
             }
-        }
-        
+            
+            PacienteDao pdao=new PacienteDao();
+            List<Paciente> paciente=pdao.pesquisaId();
+            for(Paciente p: paciente){
+            if(p.getNomePaciente().equals(boxnomePaciente.getSelectedItem())){
+                p.setId(p.getId());
+                ba.setPaciente(p);
+                
+                break;
+            }else if(p == null){
+                JOptionPane.showMessageDialog(null, "Cadastre Primeiro Um Paciente.");
+            break;
+            }}
+            UnidadeSaudeDao unidao=new UnidadeSaudeDao();
+            List<UnidadeSaude> unidade = unidao.pesquisaId();
+            for(UnidadeSaude uni: unidade){
+            if(uni.getUnidadeSaude().equals(boxnomeUnidadeSaude.getSelectedItem())){
+                uni.setId(uni.getId());
+                ba.setUnidadeSaude(uni);
+                break;
+            }else if(uni == null){
+                JOptionPane.showMessageDialog(null, "Cadastre Primeiro Uma Unidade de Saúde.");
+            break;
+            }}
+            List<BuscaAtiva> BuscaAtivas = new ArrayList();
+            BuscaAtivas.add(ba);
+            UnidadeSaude uni= new UnidadeSaude();
+            uni.setBuscaAtiva(BuscaAtivas);
+            Paciente p = new Paciente();
+            p.setBuscaAtiva(BuscaAtivas);
+            BuscaAtivaDao dao = new BuscaAtivaDao();
+            ba = dao.salvar(ba);
+            JOptionPane.showMessageDialog(null, "Cadastro Efetuado com Sucesso");
+            dispose();
+            CadastroBAtiva prin = new CadastroBAtiva();
+            prin.setVisible(true);
+                        }
     }//GEN-LAST:event_CadastrarMouseClicked
 
     private void jCheckBoxCanormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxCanormalActionPerformed
@@ -553,7 +623,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxCinstisfatorioActionPerformed
 
     private void jCheckBoxBsimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxBsimActionPerformed
-        // TODO add your handling code here:
         jCheckBoxBnao.setSelected(false);
         jLabel11.setVisible(true);
         jCheckBoxLBCarc.setVisible(true);
@@ -565,7 +634,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxBsimActionPerformed
 
     private void jCheckBoxBnaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxBnaoActionPerformed
-        // TODO add your handling code here:
         jCheckBoxBsim.setSelected(false);
         jLabel11.setVisible(false);
         jCheckBoxLBCarc.setVisible(false);
@@ -578,7 +646,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxBnaoActionPerformed
 
     private void jCheckBoxLBHPVNIC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLBHPVNIC1ActionPerformed
-        // TODO add your handling code here:
         jCheckBoxLBCarc.setSelected(false);
         jCheckBoxLBMC.setSelected(false);
         jCheckBoxLBNICII.setSelected(false);
@@ -587,7 +654,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxLBHPVNIC1ActionPerformed
 
     private void jCheckBoxLBNICIIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLBNICIIActionPerformed
-        // TODO add your handling code here:
         jCheckBoxLBCarc.setSelected(false);
         jCheckBoxLBHPVNIC1.setSelected(false);
         jCheckBoxLBMC.setSelected(false);
@@ -596,7 +662,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxLBNICIIActionPerformed
 
     private void jCheckBoxLBNICINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLBNICINActionPerformed
-        // TODO add your handling code here:
         jCheckBoxLBCarc.setSelected(false);
         jCheckBoxLBHPVNIC1.setSelected(false);
         jCheckBoxLBMC.setSelected(false);
@@ -605,7 +670,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxLBNICINActionPerformed
 
     private void jCheckBoxLBCarcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLBCarcActionPerformed
-        // TODO add your handling code here:
         jCheckBoxLBHPVNIC1.setSelected(false);
         jCheckBoxLBMC.setSelected(false);
         jCheckBoxLBNICII.setSelected(false);
@@ -630,7 +694,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxLBMCActionPerformed
 
     private void jCheckBoxTratamentoCAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTratamentoCAFActionPerformed
-        // TODO add your handling code here:
          jCheckBoxTratamentoClinico.setSelected(false);
          jCheckBoxTratamentoConizacao.setSelected(false);
          jCheckBoxTratamentoCuidosPaliativos.setSelected(false);
@@ -801,6 +864,31 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         jCheckBoxIOcorrespodencia.setSelected(false);
     }//GEN-LAST:event_jCheckBoxIOvisitadomiciliarActionPerformed
 
+    private void boxnomeUnidadeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxnomeUnidadeSaudeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxnomeUnidadeSaudeActionPerformed
+
+    private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PesquisarBuscaAtiva ba = new PesquisarBuscaAtiva();
+        ba.setVisible(true);
+    }//GEN-LAST:event_PesquisarMouseClicked
+
+    private void LimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimparMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        CadastroBAtiva ba = new CadastroBAtiva();
+        ba.setVisible(true);
+    }//GEN-LAST:event_LimparMouseClicked
+
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PrincipalADM pa = new PrincipalADM();
+        pa.setVisible(true);
+    }//GEN-LAST:event_VoltarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -854,6 +942,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     private javax.swing.JLabel Pesquisar;
     private javax.swing.JLabel Voltar;
     private javax.swing.JComboBox<String> boxnomePaciente;
+    private javax.swing.JComboBox<String> boxnomeUnidadeSaude;
     private javax.swing.JCheckBox jCheckBoxBnao;
     private javax.swing.JCheckBox jCheckBoxBsim;
     private javax.swing.JCheckBox jCheckBoxCanormal;
@@ -882,6 +971,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxTratamentooutros;
     private javax.swing.JCheckBox jCheckBoxTratamentoquimioterapia;
     private javax.swing.JCheckBox jCheckBoxssnMudou;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

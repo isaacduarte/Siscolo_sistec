@@ -45,8 +45,6 @@ public class UPLab1 extends javax.swing.JFrame {
         jTextFieldCNESLaboratorio = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         Cadastrar = new javax.swing.JLabel();
-        Limpar = new javax.swing.JLabel();
-        Pesquisar = new javax.swing.JLabel();
         jTextFieldRecebido = new javax.swing.JTextField();
         Voltar = new javax.swing.JLabel();
         cod = new javax.swing.JLabel();
@@ -105,18 +103,7 @@ public class UPLab1 extends javax.swing.JFrame {
                 CadastrarMouseClicked(evt);
             }
         });
-        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, -1, -1));
-
-        Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
-        Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LimparMouseClicked(evt);
-            }
-        });
-        getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
-
-        Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
-        getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, -1, -1));
         getContentPane().add(jTextFieldRecebido, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 110, 30));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
@@ -125,7 +112,7 @@ public class UPLab1 extends javax.swing.JFrame {
                 VoltarMouseClicked(evt);
             }
         });
-        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, 70));
+        getContentPane().add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, 70));
 
         cod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundouni2.jpg"))); // NOI18N
         getContentPane().add(cod, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 510));
@@ -161,6 +148,8 @@ public class UPLab1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Há Campos Deixados em Branco");
         }else{
             Laboratorio la= new Laboratorio();
+            int i = Integer.parseInt(cod.getText());
+            la.setId(i);
             la.setCNESLaboratorio(jTextFieldCNESLaboratorio.getText());
             la.setMunicipio(jTextFieldMunicipio.getText());
             la.setNomeLaboratorio(jTextFieldNomeLaboratorio.getText());
@@ -175,16 +164,6 @@ public class UPLab1 extends javax.swing.JFrame {
             lab.setVisible(true);
         }
     }//GEN-LAST:event_CadastrarMouseClicked
-
-    private void LimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimparMouseClicked
-        // TODO add your handling code here:
-        jTextFieldCNESLaboratorio.setText("");
-        jTextFieldMunicipio.setText("");
-        jTextFieldNomeLaboratorio.setText("");
-        jTextFieldNumeroLaboratorio.setText("");
-        jTextFieldRecebido.setText("");
-        jTextFieldUF.setText("");
-    }//GEN-LAST:event_LimparMouseClicked
 
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
         // TODO add your handling code here:
@@ -231,8 +210,6 @@ public class UPLab1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cadastrar;
-    private javax.swing.JLabel Limpar;
-    private javax.swing.JLabel Pesquisar;
     private javax.swing.JLabel Voltar;
     private javax.swing.JLabel cod;
     private javax.swing.JLabel jLabel1;

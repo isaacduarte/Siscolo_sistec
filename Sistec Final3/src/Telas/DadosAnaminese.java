@@ -9,6 +9,32 @@ import classJava.anaminese;
 import javax.swing.UIManager;
 import javax.swing.table.TableRowSorter;
 import Dao.AnamineseDao;
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.List;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.concurrent.Phaser;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Caio
@@ -21,14 +47,118 @@ public class DadosAnaminese extends javax.swing.JFrame {
     public DadosAnaminese() {
         initComponents();
     }
-    
+    public void GerarPdf(){
+        Document pdf= new Document();
+        try {
+            //Cria um pdf na pasta detinada
+            PdfWriter.getInstance(pdf, 
+            new FileOutputStream("PDF\\Dados Anamnesico do "+Paciente.getText()+".pdf"));
+            
+            //Abrir o Documento
+            pdf.open();
+            
+            //seta o tamanho da pagina
+            pdf.setPageSize(PageSize.A4);
+            Font f = new Font(FontFamily.HELVETICA, 20, Font.BOLD);
+            Font f2 = new Font (FontFamily.HELVETICA, 14, Font.BOLD);
+            Font f3 = new Font (FontFamily.HELVETICA, 14, Font.NORMAL);
+            Font f4 = new Font (FontFamily.HELVETICA, 12, Font.BOLD);
+            Font f5 = new Font (FontFamily.HELVETICA, 11, Font.NORMAL);
+            Paragraph Titulo = new Paragraph("Ministério da Saúde", f);
+            Paragraph Footer = new Paragraph("MS/SECRETARIA EXECULTIVA/DATASUS/SIPPS", f3);
+            Footer.setAlignment(Element.ALIGN_CENTER);
+            Paragraph InfoPaciente = new Paragraph();
+            InfoPaciente.setAlignment(Element.ALIGN_CENTER);
+            Paragraph line1 = new Paragraph();
+            Paragraph Rline1 = new Paragraph();
+            Paragraph line2 = new Paragraph();
+            Paragraph Rline2 = new Paragraph();
+            Paragraph line3 = new Paragraph();
+            Paragraph Rline3 = new Paragraph();
+            Paragraph subTitulo = new Paragraph();
+            Paragraph name1 = new Paragraph("Dados da  Anamnesico",f2);
+            name1.setAlignment(Element.ALIGN_CENTER);
+            Paragraph espaco = new Paragraph("                ");
+            subTitulo.add( new Phrase("   Sistec-  ", f2));
+            subTitulo.add(new Phrase("Sistema de Gestão de Informações do Câncer Do Colo De Útero", f3));
+            InfoPaciente.add(new Phrase("Nome da Paciente: ", f4));
+            InfoPaciente.add(new Phrase(Paciente.getText(), f3));
+            InfoPaciente.add(new Phrase("           Municipio: ", f4));
+            InfoPaciente.add(new Phrase(Municipio.getText(), f3));
+            PdfPTable table = new PdfPTable(2);	
+            table.addCell( new Phrase("Motivo do Exame:",f4));
+            table.addCell(new Phrase("Já fez tratamento por radiografia?",f4));
+            table.addCell(new Phrase(MotivodoExame1.getText(),f3));
+            table.addCell(new Phrase(tratemntoRadiografia.getText(),f3));
+            table.addCell(new Phrase("Fez o exame preventivo (Pepanicolaou) alguma vez?", f4));
+            table.addCell(new Phrase("Usa DIU?", f4));
+            table.addCell(new Phrase(fezexamepreventivo.getText(),f3));
+            table.addCell(new Phrase(UsaDIU.getText(),f3));
+            table.addCell(new Phrase("Está Grávida?",f4));
+            table.addCell(new Phrase("Data da última mestruação:", f4));
+            table.addCell(new Phrase(estaGravida.getText(),f3));
+            table.addCell(new Phrase(dataUtimaMestruacao.getText(),f3));
+            table.addCell(new Phrase("Usa pílula anticoncepcional?", f4));
+            table.addCell(new Phrase("Usa hormonio/remédio para a menopausa?", f4));
+            table.addCell(new Phrase(usaPilula.getText(), f3));
+            table.addCell(new Phrase(hr.getText(),f3));
+            table.addCell(new Phrase("Tem ou teve algum sangramento após relações sexuais?",f4));
+            table.addCell(new Phrase("Tem ou teve algum sangramento após a menopausa?",f4));
+            table.addCell(new Phrase(sangramentoSexual.getText(),f3));
+            table.addCell(new Phrase(sangramentoMenopausa.getText(),f3));
+            pdf.add(Titulo);    
+            pdf.add(espaco);
+            pdf.add(subTitulo);
+            pdf.add(espaco);
+            pdf.add(new LineSeparator());
+            pdf.add(name1);
+            pdf.add(espaco);
+            pdf.add(InfoPaciente);
+            pdf.add(espaco);
+            pdf.add(table);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(new LineSeparator());
+            pdf.add(Footer);
+            
+            
+            Desktop desktop = Desktop.getDesktop();    
+            desktop.open(new File("PDF\\Dados Anamnesico do "+Paciente.getText()+".pdf"));
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Por Favor Feche o PDF Que Esta Aberto");
+        } catch (DocumentException ex) {
+            Logger.getLogger(DadosAnaminese.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DadosAnaminese.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+        pdf.close();
+        }
+    }
              
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         label1 = new javax.swing.JLabel();
         label3 = new javax.swing.JLabel();
         label4 = new javax.swing.JLabel();
@@ -45,32 +175,20 @@ public class DadosAnaminese extends javax.swing.JFrame {
         fezexamepreventivo = new javax.swing.JLabel();
         UsaDIU = new javax.swing.JLabel();
         usaPilula = new javax.swing.JLabel();
+        voltar = new javax.swing.JLabel();
         hr = new javax.swing.JLabel();
         tratemntoRadiografia = new javax.swing.JLabel();
         sangramentoSexual = new javax.swing.JLabel();
         sangramentoMenopausa = new javax.swing.JLabel();
         estaGravida = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Municipio = new javax.swing.JLabel();
+        PDF = new javax.swing.JLabel();
         dataUtimaMestruacao = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltaricon.png"))); // NOI18N
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, -1, -1));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltarpng.png"))); // NOI18N
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, -1, 40));
 
         label1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label1.setText("Paciente: ");
@@ -136,6 +254,23 @@ public class DadosAnaminese extends javax.swing.JFrame {
         usaPilula.setText("jLabel8");
         getContentPane().add(usaPilula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
+        voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
+        voltar.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                voltarAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, 80));
+
         hr.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         hr.setText("jLabel9");
         getContentPane().add(hr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
@@ -156,6 +291,21 @@ public class DadosAnaminese extends javax.swing.JFrame {
         estaGravida.setText("jLabel14");
         getContentPane().add(estaGravida, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Municipio");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+
+        Municipio.setText("jLabel2");
+        getContentPane().add(Municipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
+
+        PDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconesNovos/pdf.png"))); // NOI18N
+        PDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PDFMouseClicked(evt);
+            }
+        });
+        getContentPane().add(PDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+
         dataUtimaMestruacao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         dataUtimaMestruacao.setText("jLabel15");
         getContentPane().add(dataUtimaMestruacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
@@ -170,6 +320,7 @@ public class DadosAnaminese extends javax.swing.JFrame {
         AnamineseDao dao = new AnamineseDao();
         ana = dao.obter(anaminese.class, ana.getId());
         Paciente.setText(ana.getPaciente().getNomePaciente());
+        Municipio.setText(ana.getPaciente().getMunicipio());
         MotivodoExame1.setText(ana.getMotivoExame());
         fezexamepreventivo.setText(ana.getExamePreventivo());
         UsaDIU.setText(ana.getDIU());
@@ -181,19 +332,20 @@ public class DadosAnaminese extends javax.swing.JFrame {
         estaGravida.setText(ana.getGravida());
         dataUtimaMestruacao.setText(ana.getDUtimaMestruacao());
     }
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void voltarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_voltarAncestorAdded
         // TODO add your handling code here:
-        dispose();
-        PesquisarAna prin = new PesquisarAna();
-        prin.setVisible(true);
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_voltarAncestorAdded
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        // TODO add your handling code here:
+    private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
         dispose();
-        PesquisarAna prin = new PesquisarAna();
-        prin.setVisible(true);
-    }//GEN-LAST:event_jLabel11MouseClicked
+        PesquisarAna Prin = new PesquisarAna();
+        Prin.setVisible(true);
+    }//GEN-LAST:event_voltarMouseClicked
+
+    private void PDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PDFMouseClicked
+        // TODO add your handling code here:
+        GerarPdf();
+    }//GEN-LAST:event_PDFMouseClicked
 TableRowSorter trs ;
     /**
      * @param args the command line arguments
@@ -243,15 +395,16 @@ TableRowSorter trs ;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MotivodoExame1;
+    private javax.swing.JLabel Municipio;
+    private javax.swing.JLabel PDF;
     private javax.swing.JLabel Paciente;
     private javax.swing.JLabel UsaDIU;
     private javax.swing.JLabel dataUtimaMestruacao;
     private javax.swing.JLabel estaGravida;
     private javax.swing.JLabel fezexamepreventivo;
     private javax.swing.JLabel hr;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel labe12;
     private javax.swing.JLabel label1;
@@ -267,5 +420,6 @@ TableRowSorter trs ;
     private javax.swing.JLabel sangramentoSexual;
     private javax.swing.JLabel tratemntoRadiografia;
     private javax.swing.JLabel usaPilula;
+    private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
 }

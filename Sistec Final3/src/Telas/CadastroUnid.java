@@ -101,7 +101,7 @@ public class CadastroUnid extends javax.swing.JFrame {
                 CadastrarMouseClicked(evt);
             }
         });
-        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
+        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
 
         Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
         Limpar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -117,7 +117,7 @@ public class CadastroUnid extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, -1, -1));
 
         Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/voltarpng.png"))); // NOI18N
         Voltar.addMouseListener(new java.awt.event.MouseAdapter() {

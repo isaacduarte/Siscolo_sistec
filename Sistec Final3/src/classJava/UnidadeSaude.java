@@ -12,8 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import Dao.EntidadeBase;
+import java.util.List;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 /**
  *
@@ -33,24 +37,36 @@ public class UnidadeSaude implements EntidadeBase{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Unidade_Saude_Sequenc")
     private int id;
     
-    @Column(nullable = false)
+    @Column()
     private String CNESUS;
     
-    @Column(nullable = false)
+    @Column()
     private String UnidadeSaude;
     
-    @Column(nullable = false)
+    @Column()
     private String NProtocolo;
     
-    @Column(nullable = false)
+    @Column()
     private String Municipio;
     
-    @Column(nullable = false)
+    @Column()
     private String UF;
     
-    @Column(nullable = false)
+    @Column()
     private String Prontuario;
+    @OneToMany(mappedBy = "UnidadeSaude")
+    @JoinColumn(name = "BuscaAtiva_Id")
+    private List<BuscaAtiva> BuscaAtiva;
 
+    public List<BuscaAtiva> getBuscaAtiva() {
+        return BuscaAtiva;
+    }
+
+    public void setBuscaAtiva(List<BuscaAtiva> BuscaAtiva) {
+        this.BuscaAtiva = BuscaAtiva;
+    }
+    
+    
     @Override
     public int getId() {
         return id;
@@ -107,6 +123,7 @@ public class UnidadeSaude implements EntidadeBase{
     public void setProntuario(String Prontuario) {
         this.Prontuario = Prontuario;
     }
+
     
     
 }

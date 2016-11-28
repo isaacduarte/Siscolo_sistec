@@ -5,6 +5,8 @@
  */
 package Telas;
 
+import classJava.Usuario;
+
 /**
  *
  * @author CAIO
@@ -38,9 +40,10 @@ public class PrincipalAtendente extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        nivel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        PacienteMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -92,13 +95,21 @@ public class PrincipalAtendente extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/imagefundofinal.jpg"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, -1));
 
+        nivel.setText("jLabel6");
+        getContentPane().add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
+
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenu1.setText("Cadastrar");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/patient-icon.png"))); // NOI18N
-        jMenuItem2.setText("Paciente");
-        jMenu1.add(jMenuItem2);
+        PacienteMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/patient-icon.png"))); // NOI18N
+        PacienteMenu.setText("Paciente");
+        PacienteMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PacienteMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(PacienteMenu);
 
         jMenuBar1.add(jMenu1);
 
@@ -130,6 +141,19 @@ public class PrincipalAtendente extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+public void nivelAcesso(Usuario u){
+    nivel.setText(u.getNivelDeAcesso());
+}
+    private void PacienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteMenuActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Usuario u = new Usuario();
+        u.setNivelDeAcesso(nivel.getText());
+        
+        CadastroPaci Prin = new CadastroPaci();
+        Prin.nivelAcesso(u);
+        Prin.setVisible(true);
+    }//GEN-LAST:event_PacienteMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,6 +192,7 @@ public class PrincipalAtendente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem PacienteMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -187,6 +212,6 @@ public class PrincipalAtendente extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel nivel;
     // End of variables declaration//GEN-END:variables
 }
