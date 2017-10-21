@@ -10,7 +10,9 @@ import classJava.Laboratorio;
 import classJava.Paciente;
 import classJava.UnidadeSaude;
 import classJava.citopatologico;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -23,6 +25,7 @@ public class UpAdequabilidade extends javax.swing.JFrame {
      */
     public UpAdequabilidade() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -214,6 +217,7 @@ public class UpAdequabilidade extends javax.swing.JFrame {
         getContentPane().add(jLIdUni, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 public void cadastroCont(citopatologico cito2){
     
@@ -411,6 +415,11 @@ public void cadastroCont(citopatologico cito2){
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -418,7 +427,7 @@ public void cadastroCont(citopatologico cito2){
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -474,4 +483,8 @@ public void cadastroCont(citopatologico cito2){
     private javax.swing.JLabel jLidpaci;
     private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

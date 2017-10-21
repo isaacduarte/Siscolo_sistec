@@ -6,11 +6,11 @@ import javax.swing.UIManager;
 import Dao.PacienteDao;
 import classJava.Paciente;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import classJava.BuscaAtiva;
 import Dao.UnidadeSaudeDao;
 import classJava.UnidadeSaude;
+import formatador.classes.Formatador;
 import java.util.ArrayList;
 
 public class CadastroBAtiva extends javax.swing.JFrame {
@@ -20,7 +20,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         setIcon();
         exibirUnidade();
         exibirJComboBox();
-        //tira a visualização do laudo da biopsia
+        
         jLabel11.setVisible(false);
         jCheckBoxLBCarc.setVisible(false);
         jCheckBoxLBHPVNIC1.setVisible(false);
@@ -28,8 +28,6 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         jCheckBoxLBNICII.setVisible(false);
         jCheckBoxLBNICIN.setVisible(false);
         jCheckBoxLBOutNeoplasias.setVisible(false);
-        /////////////////////////////////////////////
-        //tira a visualização não localização e obito//
         
         Obito.setVisible(false);
         naoLocalizada.setVisible(false);
@@ -39,7 +37,9 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         jCheckBoxSSOccu.setVisible(false);
         jCheckBoxSSOdesconhecidas.setVisible(false);
         jCheckBoxSSOoutrasC.setVisible(false);
+        data=new Formatador(jTextFieldDataExame, "##/##/####");
     }
+     private final Formatador data;
     public void exibirJComboBox(){
         PacienteDao dao = new PacienteDao();
         List<Paciente> paciente= dao.pesquisaId();
@@ -119,6 +119,7 @@ public class CadastroBAtiva extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Busca Ativa");
         setMinimumSize(new java.awt.Dimension(710, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

@@ -10,7 +10,9 @@ import classJava.Laboratorio;
 import classJava.Paciente;
 import classJava.UnidadeSaude;
 import classJava.citopatologico;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -23,6 +25,7 @@ public class CadastroAdequabilidade extends javax.swing.JFrame {
      */
     public CadastroAdequabilidade() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -65,7 +68,8 @@ public class CadastroAdequabilidade extends javax.swing.JFrame {
         jLIdUni = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(560, 380));
+        setTitle("Cadastro Adequabilidade");
+        setPreferredSize(new java.awt.Dimension(480, 380));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -162,8 +166,8 @@ public class CadastroAdequabilidade extends javax.swing.JFrame {
         getContentPane().add(Proximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
         getContentPane().add(JToutros, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 260, -1));
 
-        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundop15.jpg"))); // NOI18N
-        getContentPane().add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 330));
+        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundoanam (2).jpg"))); // NOI18N
+        getContentPane().add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 400));
 
         jLadequabilidadeMaterial.setText("jLabel2");
         getContentPane().add(jLadequabilidadeMaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 40, -1));
@@ -214,6 +218,7 @@ public class CadastroAdequabilidade extends javax.swing.JFrame {
         getContentPane().add(jLIdUni, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 public void cadastroCont(citopatologico cito2){
     
@@ -394,6 +399,10 @@ public void cadastroCont(citopatologico cito2){
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -401,7 +410,7 @@ public void cadastroCont(citopatologico cito2){
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -457,4 +466,8 @@ public void cadastroCont(citopatologico cito2){
     private javax.swing.JLabel jLidpaci;
     private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

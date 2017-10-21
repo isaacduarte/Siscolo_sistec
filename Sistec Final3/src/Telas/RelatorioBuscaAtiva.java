@@ -8,7 +8,7 @@ package Telas;
 import Dao.AnamineseDao;
 import Dao.BuscaAtivaDao;
 import classJava.BuscaAtiva;
-import static classJava.BuscaAtiva_.Paciente;
+import classJava.Paciente;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -30,6 +30,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.awt.Desktop;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -47,6 +48,7 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
      */
     public RelatorioBuscaAtiva() {
         initComponents();
+        setIcon();
         preechendoTabelaBuscaAtiva();
         
     }
@@ -77,7 +79,7 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
         try {
             //Cria um pdf na pasta detinada
             PdfWriter.getInstance(pdf, 
-            new FileOutputStream("PDF\\Relatorio de Busca Ativa do Paciente"+ba.getPaciente().getNomePaciente()+" "+ba.getDataExame()+".pdf"));
+            new FileOutputStream("PDF\\Relatorio de Busca Ativa do Paciente"+ba.getPaciente().getNomePaciente()+".pdf"));
             
             //Abrir o Documento
             pdf.open();
@@ -92,7 +94,7 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
             Font f5 = new Font(FontFamily.HELVETICA, 12, Font.NORMAL);
             Paragraph Titulo = new Paragraph("Ministério da Saúde", f);
             Paragraph Footer = new Paragraph("MS/SECRETARIA EXECULTIVA/DATASUS/SIPPS", f3);
-            Paragraph nome1 = new Paragraph("Relatorio de Busca Ativa", f3);
+            Paragraph nome1 = new Paragraph("Relatório de Busca Ativa", f3);
             Paragraph nome2 = new Paragraph("Mulheres sem Seguimento/Informação", f3);
             nome1.setAlignment(Element.ALIGN_CENTER);
             nome2.setAlignment(Element.ALIGN_CENTER);
@@ -105,15 +107,15 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
             InfoUnidadeSaude.setAlignment(Element.ALIGN_CENTER);
             Paragraph subTitulo = new Paragraph();
             Paragraph espaco = new Paragraph("                ");
-            subTitulo.add( new Phrase("   Sistec-  ", f2));
+            subTitulo.add( new Phrase("   Sistec -  ", f2));
             subTitulo.add(new Phrase("Sistema de Gestão de Informações do Câncer Do Colo De Útero", f3));
             InfoUnidadeSaude.add(new Phrase("Unidade de Saúde: ", f4));
             Paragraph TRelatorio = new Paragraph("Relatório de Busca Ativa", f4);
             TRelatorio.setAlignment(Element.ALIGN_CENTER);
-            Paragraph tituloInfo = new Paragraph("Mulheres sem Seguimento/informação", f4);
+            Paragraph tituloInfo = new Paragraph("Mulheres sem Seguimento/Informação", f4);
             tituloInfo.setAlignment(Element.ALIGN_CENTER);
             InfoUnidadeSaude.add(new Phrase(""+ba.getUnidadeSaude().getUnidadeSaude(),f3));
-            InfoUnidadeSaude.add(new Phrase("        Municipio: ",f4));
+            InfoUnidadeSaude.add(new Phrase("        Município: ",f4));
             InfoUnidadeSaude.add(new Phrase(""+ba.getUnidadeSaude().getMunicipio(),f3));
             PdfPTable table = new PdfPTable(new float[] { 0.50f, 0.50f, 0.18f, 0.18f });
             table.setTotalWidth(500);
@@ -144,16 +146,16 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
             table.addCell(new Phrase("Nome da Mulher",f4));
             table.addCell(new Phrase("Nome da Mãe",f4));
             table.addCell(new Phrase("Apelido",f4));
-            table.addCell(new Phrase("Nacido",f4));
+            table.addCell(new Phrase("Nascido",f4));
             table.addCell(new Phrase(""+ba.getPaciente().getNomePaciente(),f5));
             table.addCell(new Phrase(""+ba.getPaciente().getNomeMae(),f5));
             table.addCell(new Phrase(""+ba.getPaciente().getApelido(),f5));
             table.addCell(new Phrase(""+ba.getPaciente().getDataNacimento(),f5));
             table.addCell(new Phrase("Endereço",f4));
             table.addCell(new Phrase("Bairro", f4));
-            table.addCell(new Phrase("Municipio", f4));
+            table.addCell(new Phrase("Município", f4));
             table.addCell(new Phrase("Numero", f4));
-            table.addCell(new Phrase("Já Já", f5));
+            table.addCell(new Phrase("", f5));
             table.addCell(new Phrase(""+ba.getPaciente().getBairro(), f5));
             table.addCell(new Phrase(""+ba.getPaciente().getMunicipio(), f5));
             table.addCell(new Phrase(""+ba.getPaciente().getNumero(), f5));
@@ -206,23 +208,22 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
             pdf.add(espaco);
             pdf.add(espaco);
             pdf.add(espaco);
-            pdf.add(espaco);
             pdf.add(new LineSeparator());
             pdf.add(Footer);
             
                         Desktop desktop = Desktop.getDesktop();    
-            desktop.open(new File("PDF\\Relatorio de Busca Ativa do Paciente"+ba.getPaciente().getNomePaciente()+" "+ba.getDataExame()+".pdf"));
+            desktop.open(new File("PDF\\Relatorio de Busca Ativa do Paciente"+ba.getPaciente().getNomePaciente()+".pdf"));
             }   catch (DocumentException ex) {
             java.util.logging.Logger.getLogger(RelatorioBuscaAtiva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Por Favor Feche o PDF Que Esta Aberto");
+            JOptionPane.showMessageDialog(null, "Por favor feche o PDF que esta aberto !");
         }   catch (IOException ex) {
                 Logger.getLogger(RelatorioBuscaAtiva.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
         pdf.close();
         }
               }else{
-        JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
+        JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela");
         
         }   }
 
@@ -243,6 +244,8 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Relatório de Busca Ativa");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Pesquisar");
@@ -313,6 +316,7 @@ public class RelatorioBuscaAtiva extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar1MouseClicked
@@ -350,27 +354,7 @@ TableRowSorter trs ;
     }//GEN-LAST:event_FiltraKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        jTable1.setDefaultEditor(Object.class, null);  // ou usar um TableModel nao  editavel  
-        jTable1.addMouseListener(new MouseAdapter() {  
-        public void mouseClicked(MouseEvent e)  
-        {  
-        if(jTable1.getSelectedRow() != -1){
-             dispose();
-                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 2));
-                    AnamineseDao dao = new AnamineseDao();
-                    anaminese ana= new anaminese();
-                    ana.setId(id);
-                    DadosAnaminese prin=new DadosAnaminese();
-                    prin.Exporta(ana);
-                    prin.setVisible(true);
-        }else{
-        JOptionPane.showMessageDialog(null, "selecione uma linha da tabela");
         
-        }
-              }  
-    
-});
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -430,4 +414,8 @@ TableRowSorter trs ;
     private javax.swing.JLabel voltar;
     private javax.swing.JLabel voltar1;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

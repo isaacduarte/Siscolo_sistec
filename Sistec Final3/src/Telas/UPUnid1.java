@@ -7,7 +7,9 @@ package Telas;
 
 import Dao.UnidadeSaudeDao;
 import classJava.UnidadeSaude;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -20,6 +22,7 @@ public class UPUnid1 extends javax.swing.JFrame {
      */
     public UPUnid1() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -142,6 +145,8 @@ public class UPUnid1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campos Obrigatorios Deixados em Branco!");
         }else{
             UnidadeSaude uni=new UnidadeSaude();
+            int i = Integer.parseInt(cod.getText());
+            uni.setId(i);
             uni.setCNESUS(jTextFieldCNESUS.getText());
             uni.setMunicipio(jTextFieldMunicipio.getText());
             uni.setNProtocolo(jTextFieldnProtocolo.getText());
@@ -161,7 +166,7 @@ public class UPUnid1 extends javax.swing.JFrame {
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
         // TODO add your handling code here:
                 dispose();
-        PrincipalADM prin = new PrincipalADM();
+        PesquisarUnidadeSaude1 prin = new PesquisarUnidadeSaude1();
         prin.setVisible(true);
     }//GEN-LAST:event_VoltarMouseClicked
 
@@ -169,6 +174,11 @@ public class UPUnid1 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -176,7 +186,7 @@ public class UPUnid1 extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -220,4 +230,8 @@ public class UPUnid1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUnidadeSaude;
     private javax.swing.JTextField jTextFieldnProtocolo;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

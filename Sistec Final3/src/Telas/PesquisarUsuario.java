@@ -7,6 +7,7 @@ package Telas;
 
 import Dao.UsuarioDao;
 import classJava.Usuario;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -27,6 +28,7 @@ public class PesquisarUsuario extends javax.swing.JFrame {
      */
     public PesquisarUsuario() {
         initComponents();
+        setIcon();
         preenchendoTable();
     }
 public void preenchendoTable(){
@@ -65,6 +67,7 @@ public void preenchendoTable(){
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pesquisar Usuário");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Pesquisar");
@@ -160,6 +163,7 @@ public void preenchendoTable(){
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Excluir2MouseClicked
@@ -327,4 +331,8 @@ TableRowSorter trs ;
     private javax.swing.JLabel voltar2;
     // End of variables declaration//GEN-END:variables
     //aaaaaa
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

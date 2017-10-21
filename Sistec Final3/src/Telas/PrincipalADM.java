@@ -22,9 +22,9 @@ public class PrincipalADM extends javax.swing.JFrame {
         initComponents();
         setIcon();
     }
-public void nivelAcesso(Usuario u){
-    nivel.setText(u.getNivelDeAcesso());
-}
+//public void nivelAcesso(Usuario u){
+  //  nivel.setText(u.getNivelDeAcesso());
+//}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,10 +63,11 @@ public void nivelAcesso(Usuario u){
         jMenu3 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        Sobre = new javax.swing.JMenu();
+        Sair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Administrador");
         setMinimumSize(new java.awt.Dimension(710, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -167,6 +168,11 @@ public void nivelAcesso(Usuario u){
 
         exameCipatologicoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/icon_011.png"))); // NOI18N
         exameCipatologicoMenu.setText("Exame Cipatológico");
+        exameCipatologicoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exameCipatologicoMenuActionPerformed(evt);
+            }
+        });
         jMenu1.add(exameCipatologicoMenu);
 
         BuscaAtivaMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/documentpng.png"))); // NOI18N
@@ -243,6 +249,11 @@ public void nivelAcesso(Usuario u){
 
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/icon_011.png"))); // NOI18N
         jMenuItem15.setText("Exame Cipatológico");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem15);
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/documentpng.png"))); // NOI18N
@@ -260,19 +271,39 @@ public void nivelAcesso(Usuario u){
 
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/documentpng.png"))); // NOI18N
         jMenuItem17.setText("Busca Ativa");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem17);
 
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/icon_011.png"))); // NOI18N
         jMenuItem18.setText("Laudo de Exame Cipatológico");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem18);
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Sobre");
-        jMenuBar1.add(jMenu4);
+        Sobre.setText("Sobre");
+        Sobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SobreActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(Sobre);
 
-        jMenu5.setText("Sair");
-        jMenuBar1.add(jMenu5);
+        Sair.setText("Sair");
+        Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(Sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -289,11 +320,11 @@ public void nivelAcesso(Usuario u){
     private void PacienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteMenuActionPerformed
         // TODO add your handling code here:
         dispose();
-        Usuario u = new Usuario();
-        u.setNivelDeAcesso(nivel.getText());
+       // Usuario u = new Usuario();
+       // u.setNivelDeAcesso(nivel.getText());
         
         CadastroPaci Prin = new CadastroPaci();
-        Prin.nivelAcesso(u);
+        //Prin.nivelAcesso(u);
         Prin.setVisible(true);
     }//GEN-LAST:event_PacienteMenuActionPerformed
 
@@ -321,12 +352,12 @@ public void nivelAcesso(Usuario u){
     }//GEN-LAST:event_PesquisarUsuarioActionPerformed
 
     private void PesquisarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarPacienteActionPerformed
-         Usuario u = new Usuario();
-        u.setNivelDeAcesso(nivel.getText());
+         //Usuario u = new Usuario();
+        //u.setNivelDeAcesso(nivel.getText());
         
         dispose();
         PesquisarPaciente prin = new PesquisarPaciente();
-        prin.nivelAcesso(u);
+       // prin.nivelAcesso(u);
         prin.setVisible(true);
     }//GEN-LAST:event_PesquisarPacienteActionPerformed
 
@@ -346,11 +377,11 @@ public void nivelAcesso(Usuario u){
     private void ExameClinicoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExameClinicoMenuActionPerformed
         // TODO add your handling code here:
         dispose();
-        Usuario u = new Usuario();
-        u.setNivelDeAcesso(nivel.getText());
+        //Usuario u = new Usuario();
+        //u.setNivelDeAcesso(nivel.getText());
         
         CadastroExCli Prin = new CadastroExCli();
-        Prin.nivelAcesso(u);
+        //Prin.nivelAcesso(u);
         Prin.setVisible(true);
     }//GEN-LAST:event_ExameClinicoMenuActionPerformed
 
@@ -410,6 +441,45 @@ public void nivelAcesso(Usuario u){
         ba.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        RelatorioEC prin = new RelatorioEC();
+        prin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        PesquisarEC prin = new PesquisarEC();
+        prin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void exameCipatologicoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exameCipatologicoMenuActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        CadastroCitopatologico prin = new CadastroCitopatologico();
+        prin.setVisible(true);
+    }//GEN-LAST:event_exameCipatologicoMenuActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        RelatorioBuscaAtiva re = new RelatorioBuscaAtiva();
+        re.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Login l = new Login();
+        l.setVisible(true);
+    }//GEN-LAST:event_SairActionPerformed
+
+    private void SobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SobreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -458,6 +528,8 @@ public void nivelAcesso(Usuario u){
     private javax.swing.JMenuItem PacienteMenu;
     private javax.swing.JMenuItem PesquisarPaciente;
     private javax.swing.JMenuItem PesquisarUsuario;
+    private javax.swing.JMenu Sair;
+    private javax.swing.JMenu Sobre;
     private javax.swing.JMenuItem UnidadeSaudeMenu;
     private javax.swing.JMenuItem UsuarioMenu;
     private javax.swing.JMenuItem exameCipatologicoMenu;
@@ -469,8 +541,6 @@ public void nivelAcesso(Usuario u){
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;

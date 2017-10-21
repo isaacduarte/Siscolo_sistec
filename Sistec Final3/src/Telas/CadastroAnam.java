@@ -86,6 +86,7 @@ public class CadastroAnam extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Anamnese");
         setMinimumSize(new java.awt.Dimension(710, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -392,6 +393,11 @@ public class CadastroAnam extends javax.swing.JFrame {
         getContentPane().add(CAdastra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 492, -1, -1));
 
         Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
+        Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PesquisarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 492, -1, -1));
 
         Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/limparcamp.png"))); // NOI18N
@@ -749,6 +755,13 @@ public class CadastroAnam extends javax.swing.JFrame {
     private void boxnomePacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxnomePacienteActionPerformed
 
     }//GEN-LAST:event_boxnomePacienteActionPerformed
+
+    private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PesquisarAna ana = new PesquisarAna();
+        ana.setVisible(true);
+    }//GEN-LAST:event_PesquisarMouseClicked
 
     /**
      * @param args the command line arguments

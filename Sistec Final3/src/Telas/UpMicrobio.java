@@ -10,7 +10,9 @@ import classJava.Laboratorio;
 import classJava.Paciente;
 import classJava.UnidadeSaude;
 import classJava.citopatologico;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -23,6 +25,7 @@ public class UpMicrobio extends javax.swing.JFrame {
      */
     public UpMicrobio() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -478,6 +481,11 @@ public class UpMicrobio extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            
+        UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -485,7 +493,7 @@ public class UpMicrobio extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -541,4 +549,8 @@ public class UpMicrobio extends javax.swing.JFrame {
     private javax.swing.JLabel jLavaliacaopreAnalitica;
     private javax.swing.JLabel jLidpaci;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

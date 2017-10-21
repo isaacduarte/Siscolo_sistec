@@ -27,6 +27,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.awt.Desktop;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -46,6 +47,7 @@ public class DadosAnaminese extends javax.swing.JFrame {
      */
     public DadosAnaminese() {
         initComponents();
+        setIcon();
     }
     public void GerarPdf(){
         Document pdf= new Document();
@@ -188,6 +190,8 @@ public class DadosAnaminese extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dados Anamnese");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -315,6 +319,7 @@ public class DadosAnaminese extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 390));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     public void Exporta(anaminese ana){
         AnamineseDao dao = new AnamineseDao();
@@ -422,4 +427,8 @@ TableRowSorter trs ;
     private javax.swing.JLabel usaPilula;
     private javax.swing.JLabel voltar;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

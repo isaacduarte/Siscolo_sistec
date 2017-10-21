@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import  classJava.Laboratorio;
 import Dao.LaboratorioDao;
 import formatador.classes.Formatador;
+import java.awt.Toolkit;
+import javax.swing.UIManager;
 /**
  *
  * @author Caio
@@ -20,6 +22,7 @@ public class CadastroLab extends javax.swing.JFrame {
      */
     public CadastroLab() {
         initComponents();
+        setIcon();
         Recebido=new Formatador(jTextFieldRecebido, "##/##/####");
     }
     private final Formatador Recebido;
@@ -52,6 +55,7 @@ public class CadastroLab extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Laboratório");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -116,6 +120,11 @@ public class CadastroLab extends javax.swing.JFrame {
         getContentPane().add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
 
         Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/pesquisarcamp.png"))); // NOI18N
+        Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PesquisarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
         getContentPane().add(jTextFieldRecebido, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 110, 30));
 
@@ -181,10 +190,21 @@ public class CadastroLab extends javax.swing.JFrame {
         prin.setVisible(true);
     }//GEN-LAST:event_VoltarMouseClicked
 
+    private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        PesquisarLab1 lab =new PesquisarLab1();
+        lab.setVisible(true);
+    }//GEN-LAST:event_PesquisarMouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -192,7 +212,7 @@ public class CadastroLab extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -236,4 +256,8 @@ public class CadastroLab extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldRecebido;
     private javax.swing.JTextField jTextFieldUF;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

@@ -11,6 +11,7 @@ import Dao.UsuarioDao;
 import classJava.Paciente;
 import classJava.UnidadeSaude;
 import classJava.Usuario;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -31,6 +32,8 @@ public class PesquisarUnidadeSaude1 extends javax.swing.JFrame {
      */
     public PesquisarUnidadeSaude1() {
         initComponents();
+        setIcon();
+
         
         preechendoTabelaUnidadeSaude();
         
@@ -78,6 +81,8 @@ public class PesquisarUnidadeSaude1 extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pesquisar Unidade de Saúde");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Pesquisar");
@@ -194,11 +199,15 @@ public class PesquisarUnidadeSaude1 extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluir2MouseClicked
         // TODO add your handling code here:
         if(jTable1.getSelectedRow() != 1){
+ JOptionPane.showMessageDialog(this, "Obs: Só Podera Apagar a Unidade de Saúde que não estiver Vinculado a Algum Exame ");
+                    JOptionPane.showMessageDialog(this, "Obs: Para Apagar a Unidade de Saúde Precissa Apagar seu Vinculos com Os Exames ");
+                   
                     DefaultTableModel dtmUs = (DefaultTableModel) jTable1.getModel();
                     int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
                     UnidadeSaude us=new UnidadeSaude();
@@ -215,7 +224,12 @@ public class PesquisarUnidadeSaude1 extends javax.swing.JFrame {
 
     private void ExcluirLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExcluirLMouseClicked
         // TODO add your handling code here:
+        
         if(jTable1.getSelectedRow() != 1){
+            
+JOptionPane.showMessageDialog(this, "Obs: Só Podera Apagar a Unidade de Saúde que não estiver Vinculado a Algum Exame ");
+JOptionPane.showMessageDialog(this, "Obs: Para Apagar a Unidade de Saúde Precissa Apagar seu Vinculos com Os Exames ");
+                   
                     DefaultTableModel dtmUs = (DefaultTableModel) jTable1.getModel();
                     int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 0));
                     UnidadeSaude us=new UnidadeSaude();
@@ -371,4 +385,8 @@ TableRowSorter trs ;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

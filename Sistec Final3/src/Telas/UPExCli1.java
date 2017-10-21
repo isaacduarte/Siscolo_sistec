@@ -8,6 +8,8 @@ import classJava.ExameClinico;
 import formatador.classes.Formatador;
 import javax.swing.JOptionPane;
 import Dao.ExameClinicoDao;
+import java.awt.Toolkit;
+import javax.swing.UIManager;
 /**
  *
  * @author Caio
@@ -19,6 +21,7 @@ public class UPExCli1 extends javax.swing.JFrame {
      */
     public UPExCli1() {
         initComponents();
+        setIcon();
         Data=new Formatador(jTextFielddataColeta, "##/##/####");
     }
     private final Formatador Data;
@@ -218,6 +221,8 @@ public class UPExCli1 extends javax.swing.JFrame {
             }else if(jCheckBoxnao.isSelected()){
                 ex.setSsdst(jCheckBoxnao.getText());
             }
+            int i = Integer.parseInt(cod.getText());
+            ex.setId(i);
             ex.setDataColeta(jTextFielddataColeta.getText());
             ex.setResponsavel(jTextFieldResponsavel.getText());
              ExameClinicoDao dao=new ExameClinicoDao();
@@ -278,6 +283,10 @@ public class UPExCli1 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -285,7 +294,7 @@ public class UPExCli1 extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -332,4 +341,8 @@ public class UPExCli1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldResponsavel;
     private javax.swing.JFormattedTextField jTextFielddataColeta;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

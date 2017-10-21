@@ -10,8 +10,10 @@ import classJava.Laboratorio;
 import classJava.Paciente;
 import classJava.UnidadeSaude;
 import classJava.citopatologico;
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 
 public class CadastroAvaliaçãoPreAnalitica extends javax.swing.JFrame {
@@ -19,6 +21,7 @@ public class CadastroAvaliaçãoPreAnalitica extends javax.swing.JFrame {
     
     public CadastroAvaliaçãoPreAnalitica() {
         initComponents();
+        setIcon();
         addcombobox();
         addcomboboxUnidadeS();
         addcomboboxLab();
@@ -78,7 +81,7 @@ public void addcomboboxLab(){
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AVALIAÇÃO PRÉ-ANALÍTICA");
         setMinimumSize(new java.awt.Dimension(650, 410));
-        setPreferredSize(new java.awt.Dimension(650, 440));
+        setPreferredSize(new java.awt.Dimension(640, 470));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -200,8 +203,8 @@ public void addcomboboxLab(){
         getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
         getContentPane().add(JToutrasCoisas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 250, 20));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/fundoba.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 420));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fundos/fundoanam (2).jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 440));
 
         teste.setText("jLabel2");
         getContentPane().add(teste, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, -1));
@@ -397,6 +400,10 @@ public void addcomboboxLab(){
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -404,7 +411,7 @@ public void addcomboboxLab(){
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -451,4 +458,8 @@ public void addcomboboxLab(){
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel teste;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

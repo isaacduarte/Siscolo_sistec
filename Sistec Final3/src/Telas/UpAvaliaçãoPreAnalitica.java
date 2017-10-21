@@ -7,7 +7,9 @@ import classJava.Laboratorio;
 import classJava.Paciente;
 import classJava.UnidadeSaude;
 import classJava.citopatologico;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 
 public class UpAvaliaçãoPreAnalitica extends javax.swing.JFrame {
@@ -15,6 +17,8 @@ public class UpAvaliaçãoPreAnalitica extends javax.swing.JFrame {
     
     public UpAvaliaçãoPreAnalitica() {
         initComponents();
+         setIcon();
+        
 
     }
     
@@ -419,6 +423,11 @@ public void Exporta(citopatologico cito){
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -426,7 +435,7 @@ public void Exporta(citopatologico cito){
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -490,4 +499,8 @@ public void Exporta(citopatologico cito){
     private javax.swing.JLabel jLavaliacaopreAnalitica;
     private javax.swing.JLabel teste;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

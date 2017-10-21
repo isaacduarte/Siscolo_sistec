@@ -6,6 +6,8 @@
 package Telas;
 
 import classJava.Usuario;
+import java.awt.Toolkit;
+import javax.swing.UIManager;
 
 /**
  *
@@ -18,6 +20,7 @@ public class PrincipalAtendente extends javax.swing.JFrame {
      */
     public PrincipalAtendente() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -52,6 +55,7 @@ public class PrincipalAtendente extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Atendente");
         setPreferredSize(new java.awt.Dimension(716, 540));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,6 +163,10 @@ public void nivelAcesso(Usuario u){
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -166,7 +174,7 @@ public void nivelAcesso(Usuario u){
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -214,4 +222,8 @@ public void nivelAcesso(Usuario u){
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JLabel nivel;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

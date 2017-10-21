@@ -7,7 +7,9 @@ package Telas;
 
 import Dao.UnidadeSaudeDao;
 import classJava.UnidadeSaude;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -20,6 +22,7 @@ public class CadastroUnid extends javax.swing.JFrame {
      */
     public CadastroUnid() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -50,6 +53,7 @@ public class CadastroUnid extends javax.swing.JFrame {
         cod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Unidade de Saúde");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -181,6 +185,8 @@ public class CadastroUnid extends javax.swing.JFrame {
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
         dispose();
+        PesquisarUnidadeSaude1 uni = new PesquisarUnidadeSaude1();
+        uni.setVisible(true);
         
     }//GEN-LAST:event_jLabel10MouseClicked
 
@@ -195,6 +201,10 @@ public class CadastroUnid extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+        } catch (Exception e) {
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -202,7 +212,7 @@ public class CadastroUnid extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -246,4 +256,8 @@ public class CadastroUnid extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUnidadeSaude;
     private javax.swing.JTextField jTextFieldnProtocolo;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

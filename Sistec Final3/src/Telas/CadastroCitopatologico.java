@@ -44,7 +44,9 @@ public class CadastroCitopatologico extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Exame Citopatologico");
         setMinimumSize(new java.awt.Dimension(710, 520));
+        setPreferredSize(new java.awt.Dimension(750, 410));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

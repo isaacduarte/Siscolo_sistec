@@ -52,6 +52,7 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Usuário");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -178,7 +179,7 @@ public class CadastroUsuario1 extends javax.swing.JFrame {
             usu= dao.salvar(usu);
             JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
             dispose();
-            PesquisarUsuario Prin = new PesquisarUsuario();
+            CadastroUsuario1 Prin = new CadastroUsuario1();
             Prin.setVisible(true);
         
         }

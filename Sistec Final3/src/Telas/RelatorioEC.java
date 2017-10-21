@@ -6,7 +6,9 @@
 package Telas;
 
 
+import Dao.BuscaAtivaDao;
 import Dao.citopatologicoDao;
+import classJava.BuscaAtiva;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -18,19 +20,39 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import classJava.anaminese;
 import classJava.citopatologico;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
+import java.awt.Desktop;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Caio
  */
-public class PesquisarEC extends javax.swing.JFrame {
+public class RelatorioEC extends javax.swing.JFrame {
 
     /**
      * Creates new form PesquisarUsuario
      */
-    public PesquisarEC() {
+    public RelatorioEC() {
         initComponents();
+        setIcon();
         
         preechendoTabelaAna();
         
@@ -49,6 +71,182 @@ public class PesquisarEC extends javax.swing.JFrame {
             }}
     }
              
+                 public void GerarPdf(){
+        if(jTable1.getSelectedRow() != -1){
+             
+                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 3));
+                    citopatologicoDao dao = new citopatologicoDao();
+                    citopatologico cito = new citopatologico();
+                    cito.setId(id);
+                    cito = dao.obter(citopatologico.class, cito.getId());
+                    
+           
+        Document pdf= new Document();
+        try {
+            //Cria um pdf na pasta detinada
+            PdfWriter.getInstance(pdf, 
+            new FileOutputStream("PDF\\Laudodo do Exame Citopatológico do "+cito.getPaciente().getNomePaciente()+".pdf"));
+            
+            //Abrir o Documento
+            pdf.open();
+            
+            //seta o tamanho da pagina
+            pdf.setPageSize(PageSize.A4);
+            Font f = new Font(FontFamily.HELVETICA, 20, Font.BOLD);
+            Font f2 = new Font (FontFamily.HELVETICA, 14, Font.BOLD);
+            Font f3 = new Font (FontFamily.HELVETICA, 14, Font.NORMAL);
+            Font f4 = new Font (FontFamily.HELVETICA,12, Font.BOLD);
+            Font ftt = new Font(FontFamily.HELVETICA, 11, Font.BOLD);
+            Font f5 = new Font(FontFamily.HELVETICA, 12, Font.NORMAL);
+            Paragraph Titulo = new Paragraph("Ministério da Saúde", f);
+            Paragraph Footer = new Paragraph("MS/SECRETARIA EXECULTIVA/DATASUS/SIPPS", f3);
+            Footer.setAlignment(Element.ALIGN_CENTER);
+            Paragraph subTitulo = new Paragraph();
+            Paragraph espaco = new Paragraph("                ");
+            subTitulo.add( new Phrase("   Sistec -  ", f2));
+            subTitulo.add(new Phrase("Sistema de Gestão de Informações do Câncer do Colo de Útero", f3));
+            Paragraph Sub = new Paragraph();
+            Sub.add( new Phrase("Laudo Exame Citopatológico do Colo de Útero", f2));
+            Sub.setAlignment(Element.ALIGN_CENTER);
+            //tabela com informação do paciente
+            PdfPTable table = new PdfPTable(new float[] { 0.50f, 0.50f, 0.18f, 0.18f });
+            table.setTotalWidth(500);
+            table.setLockedWidth(true);
+                        table.addCell(new Phrase("Nome da Mulher",f4));
+            table.addCell(new Phrase("Nome da Mãe",f4));
+            table.addCell(new Phrase("Apelido",f4));
+            table.addCell(new Phrase("Nascido",f4));
+            table.addCell(new Phrase(""+cito.getPaciente().getNomePaciente(),f5));
+            table.addCell(new Phrase(""+cito.getPaciente().getNomeMae(),f5));
+            table.addCell(new Phrase(""+cito.getPaciente().getApelido(),f5));
+            table.addCell(new Phrase(""+cito.getPaciente().getDataNacimento(),f5));
+            table.addCell(new Phrase("Endereço",f4));
+            table.addCell(new Phrase("Bairro", f4));
+            table.addCell(new Phrase("Municipio", f4));
+            table.addCell(new Phrase("Numero", f4));
+            table.addCell(new Phrase("", f5));
+            table.addCell(new Phrase(""+cito.getPaciente().getBairro(), f5));
+            table.addCell(new Phrase(""+cito.getPaciente().getMunicipio(), f5));
+            table.addCell(new Phrase(""+cito.getPaciente().getNumero(), f5));
+            // a continuação da tabela do paciente mesclado 
+             PdfPTable tablecontP = new PdfPTable(new float[] { 1f, 0.36f });
+            tablecontP.setTotalWidth(500);
+            tablecontP.setLockedWidth(true);
+            tablecontP.addCell( new Phrase("Ponto de Referência" , f4));
+            tablecontP.addCell(new Phrase("Telefone", f4));
+            tablecontP.addCell(new Phrase(""+cito.getPaciente().getPontoReferencia(), f5));
+            tablecontP.addCell(new Phrase(""+cito.getPaciente().getTelefone(), f5));
+            
+            PdfPTable tablecito = new PdfPTable(new float[] { 0.50f, 0.50f });
+            tablecito.setTotalWidth(500);
+            tablecito.setLockedWidth(true);
+            Paragraph citocont = new Paragraph();
+            citocont.add(new Phrase("Obs.Gerais: ", f4));
+            citocont.add(new Phrase(""+cito.getObsG(), f5));
+            PdfPTable tablecitocont = new PdfPTable(new float[] { 1f });
+            tablecitocont.setTotalWidth(500);
+            tablecitocont.setLockedWidth(true);
+            tablecitocont.addCell(citocont);
+           
+            
+            tablecito.addCell(new Phrase("Avaliação Pré-Analítica", f4));
+            tablecito.addCell(new Phrase("Adequabilidade do Material", f4));
+            tablecito.addCell(new Phrase(""+cito.getAvaliacaoPreAnalitica(), f5));
+            tablecito.addCell(new Phrase(""+cito.getAdquabilidadeMaterial(), f5));
+            tablecito.addCell(new Phrase("Células Atípicas de Significado Indeterminado", f4));
+            tablecito.addCell(new Phrase("Atípias em Células Escamosas", f4));
+                tablecito.addCell(new Phrase(""+cito.getCelulasAtipicas(), f5));
+          // if(cito.getAtipiasCelulasEscamosas().equals(null)){
+            //    tablecito.addCell(new Phrase("", f5));
+            //}else{
+                tablecito.addCell(new Phrase(""+ cito.getAtipiasCelulasEscamosas(), f5));
+            //}
+            tablecito.addCell(new Phrase("Atípias em Células Glandulares", f4));
+            tablecito.addCell(new Phrase("Diagnóstico Descritivo", f4));
+            //if(cito.getAtipiasCelulasGlandulares().equals(null)){
+              //  tablecito.addCell(new Phrase("", f5));
+            //}else{
+                tablecito.addCell(new Phrase(""+ cito.getAtipiasCelulasGlandulares(), f5));
+            //}
+            
+            tablecito.addCell(new Phrase(""+cito.getDiagnosticoDescritivo(), f5));
+            tablecito.addCell(new Phrase("Microbiologia",f4 ));
+            tablecito.addCell(new Phrase("Data do Resultado",f4));
+            tablecito.addCell(new Phrase(""+cito.getMicrobiologia(), f5));
+            tablecito.addCell(new Phrase(""+cito.getDataResultado(), f5));
+            tablecito.addCell(new Phrase("Responsável pelo Resultado", f4));
+            table.addCell(new Phrase("Screenig pelo Citotécnico", f4));
+            table.addCell(new Phrase(""+cito.getResponsavel(),f5));
+            table.addCell(new Phrase(""+cito.getSPCitotecnico()));
+            
+             PdfPTable tableuni = new PdfPTable(new float[] { 0.50f, 0.50f });
+            tableuni.setTotalWidth(500);
+            tableuni.setLockedWidth(true);
+            tableuni.addCell(new Phrase("Unidade de Saúde", f4));
+            tableuni.addCell(new Phrase("Município",f4));
+            tableuni.addCell(new Phrase(""+cito.getUnidadeSaude().getUnidadeSaude(),f5));
+            tableuni.addCell(new Phrase(""+cito.getUnidadeSaude().getMunicipio(),f5));
+            
+            PdfPTable tablelab = new PdfPTable(new float[] { 0.50f, 0.50f });
+            tablelab.setTotalWidth(500);
+            tablelab.setLockedWidth(true);
+            tablelab.addCell(new Phrase("Laboratório", f4));
+            tablelab.addCell(new Phrase("Município",f4));
+            tablelab.addCell(new Phrase(""+cito.getLaboratorio().getNomeLaboratorio()));
+            tablelab.addCell(new Phrase(""+cito.getLaboratorio().getMunicipio()));
+            
+            pdf.add(Titulo);    
+            pdf.add(espaco);
+            pdf.add(subTitulo);
+            pdf.add(espaco);
+            pdf.add(new LineSeparator());
+            pdf.add(espaco);
+            pdf.add(Sub);
+            pdf.add(espaco);
+            pdf.add(new LineSeparator());
+           pdf.add(espaco);
+           pdf.add(tableuni);
+           pdf.add(espaco);
+           pdf.add(tablelab);
+           pdf.add(espaco); 
+           pdf.add(table);
+            pdf.add(tablecontP);
+            pdf.add(espaco);
+            pdf.add(tablecito);
+            pdf.add(tablecitocont);
+                        pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(espaco);
+            pdf.add(new LineSeparator());
+            pdf.add(Footer);
+                        Desktop desktop = Desktop.getDesktop();    
+            desktop.open(new File("PDF\\Laudodo do Exame Citopatológico do "+cito.getPaciente().getNomePaciente()+".pdf"));
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DadosAnaminese.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(DadosAnaminese.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DadosAnaminese.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+        pdf.close();
+        }
+    
+             
+   }else {
+        JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela");
+        
+        }}
+                 
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,18 +255,14 @@ public class PesquisarEC extends javax.swing.JFrame {
         Filtra = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        Novo2 = new javax.swing.JLabel();
-        Editar2 = new javax.swing.JLabel();
-        ExcluirL = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Editar1 = new javax.swing.JLabel();
-        Novo1 = new javax.swing.JLabel();
-        excluir2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        Editar1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Relatório Exame Citopatológico");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Pesquisar");
@@ -108,30 +302,6 @@ public class PesquisarEC extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 630, 214));
 
-        Novo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/novo32d.png"))); // NOI18N
-        Novo2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Novo2MouseClicked(evt);
-            }
-        });
-        getContentPane().add(Novo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
-
-        Editar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/editar34f.png"))); // NOI18N
-        Editar2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Editar2MouseClicked(evt);
-            }
-        });
-        getContentPane().add(Editar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
-
-        ExcluirL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/excluirpng23.png"))); // NOI18N
-        ExcluirL.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ExcluirLMouseClicked(evt);
-            }
-        });
-        getContentPane().add(ExcluirL, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
-
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltaricon.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -143,30 +313,6 @@ public class PesquisarEC extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/pesquisaodsakda13232.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 40));
 
-        Editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NavIMG/buttonedit45.png"))); // NOI18N
-        Editar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Editar1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(Editar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 50, 60));
-
-        Novo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/novopng.png"))); // NOI18N
-        Novo1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Novo1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(Novo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, 40));
-
-        excluir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img2/excluir1png.png"))); // NOI18N
-        excluir2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                excluir2MouseClicked(evt);
-            }
-        });
-        getContentPane().add(excluir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 60, 60));
-
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/voltarpng.png"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -175,90 +321,20 @@ public class PesquisarEC extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 40));
 
+        Editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconesNovos/gerar-relatorio.png"))); // NOI18N
+        Editar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Editar1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(Editar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 60, 60));
+
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PesquisarIMG/fundolegal.jpg"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluir2MouseClicked
-        
-        if(jTable1.getSelectedRow() != 1){
-                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 3));
-                    citopatologico cito= new citopatologico();
-                    citopatologicoDao dao = new citopatologicoDao();
-                    dao.remover(citopatologico.class, id);
-                    dtmUsuario.removeRow(jTable1.getSelectedRow());
-                  }else{
-                      JOptionPane.showMessageDialog(null,"seleciona uma linha da tabela.");
-                  }
-
-    }//GEN-LAST:event_excluir2MouseClicked
-
-    private void ExcluirLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExcluirLMouseClicked
-        
-        if(jTable1.getSelectedRow() != 1){
-                    DefaultTableModel dtmUsuario = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 3));
-                    citopatologico cito= new citopatologico();
-                    citopatologicoDao dao = new citopatologicoDao();
-                    dao.remover(citopatologico.class, id);
-                    dtmUsuario.removeRow(jTable1.getSelectedRow());
-                  }else{
-                      JOptionPane.showMessageDialog(null,"seleciona uma linha da tabela.");
-                  }
-    }//GEN-LAST:event_ExcluirLMouseClicked
-
-    private void Novo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo1MouseClicked
-        // TODO add your handling code here:
-        dispose();
-        CadastroCitopatologico lab = new CadastroCitopatologico();
-        lab.setVisible(true);
-    }//GEN-LAST:event_Novo1MouseClicked
-
-    private void Novo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Novo2MouseClicked
-      
-        dispose();
-        CadastroCitopatologico lab = new CadastroCitopatologico();
-        lab.setVisible(true);
-    }//GEN-LAST:event_Novo2MouseClicked
-
-    private void Editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar1MouseClicked
-        // TODO add your handling code here:
-                if(jTable1.getSelectedRow() != -1){
-             
-                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 3));
-                    citopatologicoDao dao = new citopatologicoDao();
-                    citopatologico cito = new citopatologico();
-                    cito.setId(id);
-                    UpAvaliaçãoPreAnalitica prin=new UpAvaliaçãoPreAnalitica();
-                    prin.Exporta(cito);
-                    prin.setVisible(true);
-        }else{
-        JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
-        
-        }
-    }//GEN-LAST:event_Editar1MouseClicked
-
-    private void Editar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar2MouseClicked
-        
-                if(jTable1.getSelectedRow() != -1){
-             
-                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 3));
-                    citopatologicoDao dao = new citopatologicoDao();
-                    citopatologico cito = new citopatologico();
-                    cito.setId(id);
-                    UpAvaliaçãoPreAnalitica prin=new UpAvaliaçãoPreAnalitica();
-                    prin.Exporta(cito);
-                    prin.setVisible(true);
-        }else{
-        JOptionPane.showMessageDialog(this, "selecione uma linha da tabela");
-        
-        }
-    }//GEN-LAST:event_Editar2MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
@@ -290,30 +366,13 @@ TableRowSorter trs ;
     }//GEN-LAST:event_FiltraKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        jTable1.setDefaultEditor(Object.class, null);  // ou usar um TableModel nao  editavel  
-        jTable1.addMouseListener(new MouseAdapter() {  
-        public void mouseClicked(MouseEvent e)  
-        {  
-        if (e.getClickCount() == 2)  
-        {  
-        if(jTable1.getSelectedRow() != -1){
-             dispose();
-                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-                    int id=(int) (jTable1.getValueAt(jTable1.getSelectedRow(), 2));
-//                    AnamineseDao dao = new AnamineseDao();
-                    anaminese ana= new anaminese();
-                    ana.setId(id);
-                    DadosAnaminese prin=new DadosAnaminese();
-                    prin.Exporta(ana);
-                    prin.setVisible(true);
-        }else{
-        JOptionPane.showMessageDialog(null, "selecione uma linha da tabela");
-        
-        }
-              }  
-    }  
-});
+
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void Editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Editar1MouseClicked
+        // TODO add your handling code here:
+        GerarPdf();
+    }//GEN-LAST:event_Editar1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -356,19 +415,14 @@ TableRowSorter trs ;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PesquisarEC().setVisible(true);
+                new RelatorioEC().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Editar1;
-    private javax.swing.JLabel Editar2;
-    private javax.swing.JLabel ExcluirL;
     private javax.swing.JTextField Filtra;
-    private javax.swing.JLabel Novo1;
-    private javax.swing.JLabel Novo2;
-    private javax.swing.JLabel excluir2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -377,4 +431,8 @@ TableRowSorter trs ;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

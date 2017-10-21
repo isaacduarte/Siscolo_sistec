@@ -8,10 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-/**
- *
- * @author Caio
- */
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -203,9 +200,9 @@ public class Login extends javax.swing.JFrame {
                         if(u.getNivelDeAcesso().equals(boxNivelAcesso.getSelectedItem())){
                              if(u.getNivelDeAcesso().equals("Administrador")){
                                     dispose();
-                                    u.setNivelDeAcesso(u.getNivelDeAcesso());
+                                    //u.setNivelDeAcesso(u.getNivelDeAcesso());
                                     PrincipalADM Prin = new PrincipalADM();
-                                        Prin.nivelAcesso(u);
+                                      //  Prin.nivelAcesso(u);
                                         Prin.setVisible(true);                                     
                                  break;
                              }else if(u.getNivelDeAcesso().equals("Digitador")){
@@ -216,9 +213,9 @@ public class Login extends javax.swing.JFrame {
                              }
                              else if(u.getNivelDeAcesso().equals("Atendente")){
                                  dispose();
-                                 u.setNivelDeAcesso(u.getNivelDeAcesso());
+                                 //u.setNivelDeAcesso(u.getNivelDeAcesso());
                                     PrincipalAtendente Prin = new PrincipalAtendente();
-                                     Prin.nivelAcesso(u);
+                                   //  Prin.nivelAcesso(u);
                                         Prin.setVisible(true);
                                  break;
                              }
@@ -229,7 +226,7 @@ public class Login extends javax.swing.JFrame {
                     }else if(u.getLogin().equals(textLogin.getText()) && u.getSenha()!= senha ){
                     JOptionPane.showMessageDialog(this, "senha incorreto");
                     break;
-                    }else if(u.getLogin()!= textLogin.getText() && u.getSenha() == senha ){
+                    }else if(u.getLogin()!= textLogin.getText()){
                     JOptionPane.showMessageDialog(this, "login incorreto");
                     break;
                     }

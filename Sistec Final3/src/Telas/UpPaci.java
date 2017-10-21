@@ -13,6 +13,7 @@ import classJava.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import formatador.classes.Formatador;
+import java.awt.Toolkit;
 import javax.xml.bind.DatatypeConverter;
 /**
  *
@@ -25,6 +26,7 @@ public class UpPaci extends javax.swing.JFrame {
      */
     public UpPaci() {
         initComponents();
+        setIcon();
         cpf=new Formatador(jTextcpf, "###.###.###-##");
         telefone=new Formatador(jTextFieldTelefone, "(##)#####-####");
         data=new Formatador(jTextFieldDataNasc, "##/##/####");
@@ -367,9 +369,9 @@ public class UpPaci extends javax.swing.JFrame {
     jTextFieldPontoReferencia.setText(p.getPontoReferencia());
    }
    
-   public void nivelAcesso(Usuario u){
-    nivel.setText(u.getNivelDeAcesso());
-}
+   //public void nivelAcesso(Usuario u){
+    //nivel.setText(u.getNivelDeAcesso());
+//}
     private void jTextNomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeMaeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNomeMaeActionPerformed
@@ -508,11 +510,11 @@ public class UpPaci extends javax.swing.JFrame {
 
     private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
          dispose();
-        Usuario u = new Usuario();
-        u.setNivelDeAcesso(nivel.getText());
+    //    Usuario u = new Usuario();
+      //  u.setNivelDeAcesso(nivel.getText());
         
         PesquisarPaciente Prin = new PesquisarPaciente();
-        Prin.nivelAcesso(u);
+  //      Prin.nivelAcesso(u);
         Prin.setVisible(true);
     }//GEN-LAST:event_VoltarMouseClicked
 
@@ -614,4 +616,8 @@ public class UpPaci extends javax.swing.JFrame {
     private javax.swing.JTextField jTextnomePaciente;
     private javax.swing.JLabel nivel;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }

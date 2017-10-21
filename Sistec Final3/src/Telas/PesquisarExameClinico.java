@@ -9,6 +9,7 @@ import Dao.ExameClinicoDao;
 import Dao.UsuarioDao;
 import classJava.ExameClinico;
 import classJava.Usuario;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -29,6 +30,7 @@ public class PesquisarExameClinico extends javax.swing.JFrame {
      */
     public PesquisarExameClinico() {
         initComponents();
+        setIcon();
         preenchendoTabelaExameClinico();
     }
 public void preenchendoTabelaExameClinico(){
@@ -69,6 +71,8 @@ public void preenchendoTabelaExameClinico(){
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pesquisar Exame Clínico");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Pesquisar");
@@ -165,6 +169,7 @@ public void preenchendoTabelaExameClinico(){
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Excluir2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Excluir2MouseClicked
@@ -334,4 +339,8 @@ TableRowSorter trs ;
     private javax.swing.JLabel voltar2;
     // End of variables declaration//GEN-END:variables
     //aaaaaa
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("iconeframe.png")));
+    }
 }
